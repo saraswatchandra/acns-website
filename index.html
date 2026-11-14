@@ -64,6 +64,25 @@ nav.main a:hover::after{transform:scaleX(1);transform-origin:left}
 .theme-tg svg{width:20px;height:20px}
 @media (max-width:420px){.logo{font-size:18px}.theme-tg{width:44px;height:44px;flex-basis:44px}}
 html[data-theme="dark"] .theme-tg .i-moon,html:not([data-theme="dark"]) .theme-tg .i-sun{display:none}
+
+.hero-k .hero-copy{max-width:100%}
+.hero-h{font-size:clamp(52px,8.4vw,152px);margin-top:28px;line-height:var(--lh)}
+.rot-wrap{display:inline-block;position:relative;vertical-align:top}
+.rot{display:inline-block;overflow:hidden;height:1.3em;margin-bottom:-.24em;vertical-align:top;color:var(--accent);transition:width .7s cubic-bezier(.7,0,.2,1)}
+.rot-in{display:flex;flex-direction:column;transition:transform .75s cubic-bezier(.7,0,.2,1)}
+.rw{display:block;white-space:nowrap;height:1.3em;line-height:1.06em;align-self:flex-start;width:max-content}
+html[data-theme="warm"] .hero-h{font-size:clamp(52px,8.8vw,156px)}
+.rot-line{position:absolute;left:0;right:0;bottom:-.04em;height:.07em;min-height:4px;border-radius:99px;background:var(--accent);transform-origin:left;opacity:.9}
+.rot-line.go{animation:rline .9s cubic-bezier(.7,0,.2,1)}
+@keyframes rline{0%{transform:scaleX(1);transform-origin:right}45%{transform:scaleX(0);transform-origin:right}46%{transform:scaleX(0);transform-origin:left}100%{transform:scaleX(1);transform-origin:left}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hero-k .hero-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:28px 48px;margin-top:44px}
+.hero-k .hero-row .lead{margin:0;max-width:600px}
+.hero-k .btns{margin:0}
+.hero-k .hero-bg .dots{-webkit-mask-image:radial-gradient(ellipse 70% 65% at 50% 45%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 65% at 50% 45%,#000 20%,transparent 75%)}
+@media (max-width:600px){.hero-h,html[data-theme="warm"] .hero-h{font-size:clamp(42px,12vw,64px)}}
+
+.hero-k .hero-bg .nn{position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:linear-gradient(to right,rgba(0,0,0,.45) 0%,#000 55%);mask-image:linear-gradient(to right,rgba(0,0,0,.45) 0%,#000 55%)}
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--fg);cursor:pointer;background:transparent;color:var(--fg);font-family:inherit;will-change:transform;white-space:nowrap}
 .btn .t{display:inline-flex;align-items:center;gap:10px;will-change:transform}
@@ -466,24 +485,20 @@ html[data-theme="bold"] .icon-tile svg{color:var(--accent)}
 
 <main id="homeView">
   <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-bg" aria-hidden="true"><div class="dots"></div><div class="spot"></div></div>
+  <section class="hero hero-k" id="home">
+    <div class="hero-bg" aria-hidden="true"><canvas class="nn"></canvas><div class="spot"></div></div>
     <div class="wrap">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <span class="hero-badge" data-fade><i></i>ACNS AI SOLUTIONS LLP</span>
-          <h1 class="disp"><span class="ln"><span class="w"><span class="wi">Engineering</span></span> <span class="w"><span class="wi">the</span></span></span><br><span class="ln"><span class="w"><span class="wi hl">Future.</span></span> <span class="w"><span class="wi hl">Today.</span></span></span></h1>
+      <div class="hero-copy">
+        <span class="hero-badge" data-fade><i></i>ACNS AI SOLUTIONS LLP</span>
+        <h1 class="disp hero-h">
+          <span class="w"><span class="wi">Engineering</span></span> <span class="w"><span class="wi">the</span></span> <span class="w"><span class="wi">Future</span></span><br>
+          <span class="w"><span class="wi">in</span></span> <span class="rot-wrap"><span class="rot" aria-hidden="true"><span class="rot-in"><span class="rw">AI Agents</span><span class="rw">AI Calling</span><span class="rw">Automation</span><span class="rw">IoT</span><span class="rw">SaaS</span><span class="rw">Salesforce</span><span class="rw">Mobile Apps</span><span class="rw">AR / VR</span><span class="rw">Games</span><span class="rw">AI Agents</span></span></span><span class="rot-line" aria-hidden="true"></span></span><span class="sr-only">AI Agents, AI Calling, Automation, IoT, SaaS, Salesforce, Mobile Apps, AR/VR and Games</span>
+        </h1>
+        <div class="hero-row">
           <p class="lead" data-fade>At ACNS AI SOLUTIONS LLP, we build transformative digital solutions, from immersive games and intelligent AI agents to full-scale AI ecosystems.</p>
           <div class="btns" data-fade>
             <span class="mag"><a href="#contact" class="btn solid"><span class="t">Start Your Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
             <span class="mag"><a href="#services" class="btn"><span class="t"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> View Capabilities</span></a></span>
-          </div>
-        </div>
-        <div class="orbit-wrap" aria-hidden="true">
-          <div class="orbit" id="orbit">
-            <div class="ring r2" id="ring2"></div>
-            <div class="ring r1" id="ring1"></div>
-            <div class="core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V6a3 3 0 0 0-3-3zM15 3a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></svg></div>
           </div>
         </div>
       </div>
@@ -748,11 +763,6 @@ var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 document.getElementById('svcList').innerHTML = SERVICES.map(function(x, i){
   return '<a href="#' + (SLUG_BY_TITLE[x[0]] || 'services') + '" data-img="img/' + x[2] + '.webp"><span class="n">' + String(i + 1).padStart(2, '0') + '</span><span class="thumb"><img src="img/' + x[2] + '.webp" alt="" loading="lazy"></span><span class="ttl">' + esc(x[0]) + '</span><span class="ds">' + esc(x[1]) + '</span><span class="lm">Learn More ' + ARROW + '</span></a>';
 }).join('');
-(function(){
-  function nodes(list, on){ var n = list.length; return list.map(function(nm, i){ return '<span class="node" style="--a:' + (360 / n * i) + 'deg"><span class="ni' + (on.indexOf(i) > -1 ? ' on' : '') + '">' + icon(nm) + '</span></span>'; }).join(''); }
-  document.getElementById('ring1').innerHTML = nodes(['Bot','Phone','Zap','Cloud'], [0]);
-  document.getElementById('ring2').innerHTML = nodes(['Globe','Smartphone','Headset','Gamepad2','Palette','Wifi','Code2'], [3]);
-})();
 
 /* ---- unique generated cover for every portfolio project ---- */
 function rnd(n){ var x = Math.sin(n * 9301 + 49297) * 233280; return x - Math.floor(x); }
@@ -892,6 +902,120 @@ document.getElementById('prodList').innerHTML = PRODUCTS.map(function(p, i){
   });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lb.hidden = true; });
   window.addEventListener('hashchange', function(){ lb.hidden = true; });
+})();
+
+/* hero rotating word */
+var ROT_STARTED = false;
+function startRotator(){
+  if (ROT_STARTED) return; ROT_STARTED = true;
+  var rot = document.querySelector('.rot'), inner = document.querySelector('.rot-in'); if (!rot) return;
+  var words = inner.querySelectorAll('.rw'), n = words.length - 1, i = 0, line = document.querySelector('.rot-line');
+  function fit(){ rot.style.width = words[i].getBoundingClientRect().width + 'px'; }
+  function show(noAnim){
+    if (noAnim) { inner.style.transition = 'none'; rot.style.transition = 'none'; }
+    inner.style.transform = 'translateY(' + (-i * (100 / words.length)) + '%)'; fit();
+    if (noAnim) { void inner.offsetHeight; inner.style.transition = ''; rot.style.transition = ''; }
+  }
+  show(true);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  setInterval(function(){
+    i++; show(false);
+    if (line) { line.classList.remove('go'); void line.offsetWidth; line.classList.add('go'); }
+    if (i === n) setTimeout(function(){ i = 0; show(true); }, 750);
+  }, 2300);
+  window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+}
+
+/* hero neural network background */
+(function(){
+  var cv = document.querySelector('.hero-k .nn'); if (!cv || !cv.getContext) return;
+  var ctx = cv.getContext('2d'), hero = cv.closest('.hero'), root = document.documentElement;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0, nodes = [], pulses = [], links = [];
+  var mouse = { x: -9999, y: -9999 }, visible = true, LINK = 150, raf = 0, lastSpawn = 0;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var C = {};
+  function rgba(c, a){
+    c = c.trim();
+    if (c.charAt(0) === '#') { var h = c.slice(1); if (h.length === 3) h = h.replace(/./g, '$&$&'); var n = parseInt(h, 16); return 'rgba(' + (n >> 16 & 255) + ',' + (n >> 8 & 255) + ',' + (n & 255) + ',' + a + ')'; }
+    return c;
+  }
+  function readColors(){ var cs = getComputedStyle(root); C.acc = cs.getPropertyValue('--accent') || '#FF6A3D'; C.fg = cs.getPropertyValue('--fg') || '#141414'; C.dark = root.getAttribute('data-theme') === 'dark'; }
+  function build(){
+    var r = hero.getBoundingClientRect(); W = r.width; H = r.height;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    LINK = W < 640 ? 105 : 150;
+    var count = Math.round(Math.min(W < 640 ? 42 : 105, (W * H) / (W < 640 ? 9000 : 13000)));
+    nodes = [];
+    for (var i = 0; i < count; i++) nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .32, vy: (Math.random() - .5) * .32, r: 1.3 + Math.random() * 1.7, hub: Math.random() < .13, ph: Math.random() * 6.28 });
+    pulses = [];
+  }
+  function neighbours(idx, not){
+    var a = nodes[idx], out = [];
+    for (var j = 0; j < nodes.length; j++) { if (j === idx || j === not) continue; var dx = a.x - nodes[j].x, dy = a.y - nodes[j].y; if (dx * dx + dy * dy < LINK * LINK) out.push(j); }
+    return out;
+  }
+  function spawn(){
+    if (!links.length || pulses.length > 14) return;
+    var l = links[Math.floor(Math.random() * links.length)];
+    pulses.push({ a: l[0], b: l[1], t: 0, sp: .012 + Math.random() * .012, hops: 3 + Math.floor(Math.random() * 4) });
+  }
+  function frame(ts){
+    raf = 0; if (!visible) return;
+    ctx.clearRect(0, 0, W, H);
+    var lineA = C.dark ? .22 : .16, i, j, a, b, dx, dy, d2, L2 = LINK * LINK;
+    for (i = 0; i < nodes.length; i++) {
+      a = nodes[i];
+      if (!reduce) { a.x += a.vx; a.y += a.vy; if (a.x < 0 || a.x > W) a.vx *= -1; if (a.y < 0 || a.y > H) a.vy *= -1; }
+      dx = a.x - mouse.x; dy = a.y - mouse.y; d2 = dx * dx + dy * dy;
+      if (d2 < 14400 && d2 > 1) { var f = (1 - Math.sqrt(d2) / 120) * .6; a.x += dx / Math.sqrt(d2) * f; a.y += dy / Math.sqrt(d2) * f; }
+    }
+    links = [];
+    ctx.lineWidth = 1;
+    for (i = 0; i < nodes.length; i++) for (j = i + 1; j < nodes.length; j++) {
+      a = nodes[i]; b = nodes[j]; dx = a.x - b.x; dy = a.y - b.y; d2 = dx * dx + dy * dy;
+      if (d2 < L2) { links.push([i, j]); ctx.strokeStyle = rgba(C.fg, (1 - Math.sqrt(d2) / LINK) * lineA); ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+    }
+    if (mouse.x > -999) for (i = 0; i < nodes.length; i++) {
+      a = nodes[i]; dx = a.x - mouse.x; dy = a.y - mouse.y; d2 = dx * dx + dy * dy;
+      if (d2 < 40000) { ctx.strokeStyle = rgba(C.acc, (1 - Math.sqrt(d2) / 200) * .55); ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+    }
+    var t = (ts || 0) / 1000;
+    for (i = 0; i < nodes.length; i++) {
+      a = nodes[i];
+      if (a.hub) {
+        var g = 4 + Math.sin(t * 2 + a.ph) * 2;
+        ctx.fillStyle = rgba(C.acc, .16); ctx.beginPath(); ctx.arc(a.x, a.y, a.r + 5 + g, 0, 6.283); ctx.fill();
+        ctx.fillStyle = rgba(C.acc, .95); ctx.beginPath(); ctx.arc(a.x, a.y, a.r + 1.2, 0, 6.283); ctx.fill();
+      } else { ctx.fillStyle = rgba(C.fg, C.dark ? .55 : .4); ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.283); ctx.fill(); }
+    }
+    if (!reduce) {
+      if (!lastSpawn || ts - lastSpawn > 260) { lastSpawn = ts; if (Math.random() < .8) spawn(); }
+      for (i = pulses.length - 1; i >= 0; i--) {
+        var p = pulses[i]; a = nodes[p.a]; b = nodes[p.b]; if (!a || !b) { pulses.splice(i, 1); continue; }
+        p.t += p.sp;
+        var x = a.x + (b.x - a.x) * p.t, y = a.y + (b.y - a.y) * p.t;
+        var tail = Math.max(0, p.t - .25), tx = a.x + (b.x - a.x) * tail, ty = a.y + (b.y - a.y) * tail;
+        var grd = ctx.createLinearGradient(tx, ty, x, y); grd.addColorStop(0, rgba(C.acc, 0)); grd.addColorStop(1, rgba(C.acc, .9));
+        ctx.strokeStyle = grd; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(tx, ty); ctx.lineTo(x, y); ctx.stroke(); ctx.lineWidth = 1;
+        ctx.fillStyle = rgba(C.acc, .25); ctx.beginPath(); ctx.arc(x, y, 6, 0, 6.283); ctx.fill();
+        ctx.fillStyle = rgba(C.acc, 1); ctx.beginPath(); ctx.arc(x, y, 2.2, 0, 6.283); ctx.fill();
+        if (p.t >= 1) {
+          var nb = p.hops > 0 ? neighbours(p.b, p.a) : [];
+          if (nb.length) { p.a = p.b; p.b = nb[Math.floor(Math.random() * nb.length)]; p.t = 0; p.hops--; } else pulses.splice(i, 1);
+        }
+      }
+    }
+    if (!reduce) raf = requestAnimationFrame(frame);
+  }
+  function start(){ if (!raf && visible) raf = requestAnimationFrame(frame); }
+  readColors(); build(); start();
+  window.addEventListener('resize', function(){ build(); if (reduce) frame(0); });
+  hero.addEventListener('mousemove', function(e){ var r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  hero.addEventListener('mouseleave', function(){ mouse.x = mouse.y = -9999; });
+  new MutationObserver(function(){ readColors(); if (reduce) frame(0); }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ visible = es[0].isIntersecting; if (visible) start(); }, { threshold: 0 }).observe(hero);
+  document.addEventListener('visibilitychange', function(){ visible = !document.hidden; if (visible) start(); });
 })();
 document.getElementById('faqs').innerHTML = FAQS.map(function(f, i){
   return '<div class="faq"><button type="button" aria-expanded="false" aria-controls="fa' + i + '"><span>' + esc(f[0]) + '</span><span class="pm" aria-hidden="true">+</span></button><div class="ans" id="fa' + i + '"><div><p>' + esc(f[1]) + '</p></div></div></div>';
@@ -1111,9 +1235,9 @@ document.getElementById('faqs').innerHTML = FAQS.map(function(f, i){
     scrollToEl(el);
   });
 
-  if (!anim) { pre.style.display = 'none'; startPhysicsWhenVisible(); route(); return; }
+  if (!anim) { pre.style.display = 'none'; startPhysicsWhenVisible(); route(); startRotator(); return; }
   gsap.registerPlugin(ScrollTrigger);
-  setTimeout(function(){ if (pre.style.display !== 'none') { pre.style.display = 'none'; if (lenis) lenis.start(); } }, 6000);
+  setTimeout(function(){ startRotator(); if (pre.style.display !== 'none') { pre.style.display = 'none'; if (lenis) lenis.start(); } }, 6000);
 
   /* ---------- smooth scroll ---------- */
   if (typeof window.Lenis !== 'undefined') {
@@ -1150,29 +1274,25 @@ document.getElementById('faqs').innerHTML = FAQS.map(function(f, i){
   var num = document.getElementById('preNum'); var c = { v: 0 };
   gsap.set('.hero .wi', { yPercent: 115 });
   gsap.set('.hero [data-fade]', { y: 30, opacity: 0 });
-  gsap.set('#orbit', { scale: 0.55, opacity: 0, rotate: -40 });
+  gsap.set('.rot-wrap', { opacity: 0, y: 40 });
   gsap.timeline({ onComplete: function(){ pre.style.display = 'none'; if (lenis) lenis.start(); } })
     .to(c, { v: 100, duration: 1.4, ease: 'power2.inOut', onUpdate: function(){ num.textContent = Math.round(c.v); } })
     .to(pre, { yPercent: -100, duration: 0.95, ease: 'power4.inOut' })
     .to('.hero .wi', { yPercent: 0, duration: 1.1, stagger: 0.09, ease: 'power4.out' }, '-=0.45')
     .to('.hero [data-fade]', { y: 0, opacity: 1, duration: 0.8, stagger: 0.09, ease: 'power3.out' }, '-=0.75')
-    .to('#orbit', { scale: 1, opacity: 1, rotate: 0, duration: 1.6, ease: 'power3.out' }, '-=1.3');
+    .to('.rot-wrap', { opacity: 1, y: 0, duration: 1, ease: 'power4.out', onComplete: startRotator }, '-=1.1');
 
   gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
   /* hero: scroll-out parallax, spotlight + orbit tilt */
   var heroEl = document.querySelector('.hero');
   gsap.to('.hero-copy', { yPercent: -14, opacity: 0.25, ease: 'none', scrollTrigger: { trigger: heroEl, start: 'top top', end: 'bottom top', scrub: true } });
-  gsap.to('.orbit-wrap', { yPercent: 10, rotate: 25, ease: 'none', scrollTrigger: { trigger: heroEl, start: 'top top', end: 'bottom top', scrub: true } });
   if (fine) {
     var spot = heroEl.querySelector('.spot');
     var sx = gsap.quickTo(spot, 'x', { duration: 0.6, ease: 'power3' }), sy = gsap.quickTo(spot, 'y', { duration: 0.6, ease: 'power3' });
-    var orb = document.getElementById('orbit');
-    var ox = gsap.quickTo(orb, 'rotationY', { duration: 0.8, ease: 'power3' }), oy = gsap.quickTo(orb, 'rotationX', { duration: 0.8, ease: 'power3' });
     heroEl.addEventListener('mousemove', function(e){
       var r = heroEl.getBoundingClientRect(); sx(e.clientX - r.left); sy(e.clientY - r.top); heroEl.classList.add('lit');
-      ox((e.clientX / window.innerWidth - 0.5) * 22); oy(-(e.clientY / window.innerHeight - 0.5) * 22);
     });
-    heroEl.addEventListener('mouseleave', function(){ heroEl.classList.remove('lit'); ox(0); oy(0); });
+    heroEl.addEventListener('mouseleave', function(){ heroEl.classList.remove('lit'); });
   }
 
   /* headings */

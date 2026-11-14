@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="warm">
+<head>
+<meta charset="utf-8">
+<script>try{var t=localStorage.getItem("acns-theme");if(t==="dark"||t==="warm")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ACNS AI SOLUTIONS LLP - Engineering the Future Today</title>
+<meta name="description" content="ACNS AI SOLUTIONS LLP builds transformative digital solutions, from immersive games and intelligent AI agents to full-scale AI ecosystems.">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-light-32x32.png" media="(prefers-color-scheme: light)">
+<link rel="icon" href="icon-dark-32x32.png" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Anton&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Big+Shoulders+Display:wght@700;900&family=Inter+Tight:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+html[data-theme="dark"]{--bg:#0B0B0C;--fg:#F2F2F2;--muted:#A8A8A8;--line:#2A2A2D;--card:#151517;--accent:#C6F432;--on-accent:#0B0B0C;--d-font:'Big Shoulders Display';--d-weight:900;--d-case:uppercase;--d-ls:0em;--lh:.9;--b-font:'Poppins';--radius:22px;--wm-font:'Big Shoulders Display';--wm:transparent;--wm-stroke:2px #F2F2F2;--tag-bg:#F2F2F2;--tag-fg:#0B0B0C;--band:#F2F2F2;--band-fg:#0B0B0C}
+html[data-theme="warm"]{--bg:#FAE8DF;--fg:#141414;--muted:#5C4035;--line:#E3C9BC;--card:#FFFFFF;--accent:#FF6A3D;--on-accent:#141414;--d-font:'DM Sans';--d-weight:500;--d-case:none;--d-ls:-.045em;--lh:1;--b-font:'DM Sans';--radius:28px;--wm-font:'Anton';--wm:#FF6A3D;--wm-stroke:0 transparent;--tag-bg:#141414;--tag-fg:#FAE8DF;--band:#141414;--band-fg:#FAE8DF}
+html[data-theme="bold"]{--bg:#FFFFFF;--fg:#0A0A0A;--muted:#525252;--line:#D4D4D4;--card:#F4F4F4;--accent:#D21F1A;--on-accent:#FFFFFF;--d-font:'Inter Tight';--d-weight:900;--d-case:none;--d-ls:-.05em;--lh:.9;--b-font:'Inter Tight';--radius:10px;--wm-font:'Inter Tight';--wm:#0A0A0A;--wm-stroke:0 transparent;--tag-bg:#F7DC00;--tag-fg:#0A0A0A;--band:#0A0A0A;--band-fg:#F7DC00}
+
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+body{font-family:var(--b-font),system-ui,sans-serif;transition:background .5s,color .5s;overflow-x:hidden;line-height:1.5}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(20px,3vw,40px)}
+.disp{font-family:var(--d-font),sans-serif;font-weight:var(--d-weight);text-transform:var(--d-case);letter-spacing:var(--d-ls);line-height:var(--lh);margin:0}
+.eyebrow{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0}
+.lead{font-size:18px;line-height:1.6;color:var(--muted);margin:0;max-width:620px}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.wi{display:inline-block}
+.hl{color:var(--accent)}
+section.pad{padding:clamp(90px,11vw,150px) 0}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(52px,7vw,112px)}
+
+/* progress, preloader, cursor */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left;z-index:60}
+.pre{position:fixed;inset:0;background:var(--fg);z-index:100;display:flex;align-items:flex-end;justify-content:space-between;padding:clamp(20px,4vw,48px);gap:20px}
+.pre .disp{color:var(--bg);font-size:clamp(56px,11vw,170px)}
+.pre-num{color:var(--bg);font-family:var(--d-font),sans-serif;font-weight:var(--d-weight);font-size:clamp(44px,7vw,110px);line-height:1}
+.cur{position:fixed;left:0;top:0;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:#fff;mix-blend-mode:difference;pointer-events:none;z-index:90;opacity:0}
+
+/* header */
+header.top{position:fixed;top:0;left:0;right:0;z-index:50;transition:transform .45s cubic-bezier(.2,.8,.2,1),background .4s}
+header.top.hide{transform:translateY(-110%)}
+header.top.filled{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:16px;padding-bottom:16px}
+.logo{font-family:var(--d-font),sans-serif;font-weight:900;font-size:22px;text-decoration:none;letter-spacing:var(--d-ls);text-transform:uppercase;white-space:nowrap}
+.logo i{font-style:normal;color:var(--accent)}
+nav.main{display:flex;gap:26px;font-size:14px;font-weight:500}
+nav.main a{text-decoration:none;position:relative;padding:6px 0}
+nav.main a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s}
+nav.main a:hover::after{transform:scaleX(1);transform-origin:left}
+.menu-btn{display:none;min-width:44px;min-height:44px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--fg);font:inherit;font-size:14px;padding:0 16px;cursor:pointer}
+.mnav{display:none;flex-direction:column;padding:8px clamp(20px,3vw,40px) 20px;background:var(--bg);border-bottom:1px solid var(--line)}
+.mnav a{padding:12px 0;text-decoration:none;font-size:18px;border-bottom:1px solid var(--line)}
+.mnav.open{display:flex}
+@media (max-width:1080px){nav.main,.top .hdr-cta{display:none}.menu-btn{display:inline-flex;align-items:center}}
+
+.hdr-right{display:flex;align-items:center;gap:10px}
+.theme-tg{width:46px;height:46px;flex:0 0 46px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--fg);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .5s cubic-bezier(.2,.8,.2,1),background .4s}
+.theme-tg:hover{transform:rotate(25deg)}
+.theme-tg svg{width:20px;height:20px}
+@media (max-width:420px){.logo{font-size:18px}.theme-tg{width:44px;height:44px;flex-basis:44px}}
+html[data-theme="dark"] .theme-tg .i-moon,html:not([data-theme="dark"]) .theme-tg .i-sun{display:none}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid var(--fg);cursor:pointer;background:transparent;color:var(--fg);font-family:inherit;will-change:transform;white-space:nowrap}
+.btn .t{display:inline-flex;align-items:center;gap:10px;will-change:transform}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn svg{width:16px;height:16px}
+.mag{display:inline-block}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+
+/* hero */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 36px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.hero>.wrap{width:100%}
+.hero-bg .dots{position:absolute;inset:0;background-image:radial-gradient(var(--line) 1.3px,transparent 1.4px);background-size:30px 30px;-webkit-mask-image:radial-gradient(ellipse 65% 60% at 68% 45%,#000 25%,transparent 75%);mask-image:radial-gradient(ellipse 65% 60% at 68% 45%,#000 25%,transparent 75%)}
+.hero-bg .spot{position:absolute;left:0;top:0;width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 20%,transparent),transparent 62%);opacity:0;transition:opacity .5s}
+.hero.lit .spot{opacity:1}
+.hero-grid{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:32px 48px}
+.hero-copy{flex:1.25 1 560px;min-width:0}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:999px;padding:8px 16px 8px 10px;font-size:13px;font-weight:500;letter-spacing:.08em;background:var(--card)}
+.hero-badge i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent);animation:blink 2s infinite}
+@keyframes blink{50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--accent) 0%,transparent)}}
+.hero h1{font-size:clamp(44px,6.1vw,108px);margin-top:26px}
+.hero h1 .ln{white-space:nowrap}
+@media (max-width:600px){.hero h1 .ln{white-space:normal}}
+.hero .lead{margin-top:28px;font-size:clamp(17px,1.4vw,20px);max-width:560px}
+.hero .btns{margin-top:38px}
+.orbit-wrap{flex:1 1 380px;display:flex;justify-content:center;perspective:1100px}
+.orbit{--s:clamp(290px,36vw,520px);width:var(--s);height:var(--s);position:relative;transform-style:preserve-3d}
+.ring{position:absolute;left:50%;top:50%;border:1px dashed var(--line);border-radius:50%;animation:spin 34s linear infinite}
+.ring.r1{width:calc(var(--s) * .6);height:calc(var(--s) * .6);margin:calc(var(--s) * -.3) 0 0 calc(var(--s) * -.3)}
+.ring.r2{width:calc(var(--s) - 52px);height:calc(var(--s) - 52px);margin:calc((var(--s) - 52px) / -2) 0 0 calc((var(--s) - 52px) / -2);animation-duration:56s;animation-direction:reverse}
+.node{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;transform:rotate(var(--a)) translateX(var(--r)) rotate(calc(var(--a) * -1))}
+.r1 .node{--r:calc(var(--s) * .3)}
+.r2 .node{--r:calc(var(--s) / 2 - 26px)}
+.node .ni{width:100%;height:100%;border-radius:16px;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--fg);box-shadow:0 10px 30px rgba(0,0,0,.18);animation:spin 34s linear infinite reverse}
+.r2 .node .ni{animation-duration:56s;animation-direction:normal}
+.node .ni.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.node svg{width:22px;height:22px}
+.core{position:absolute;left:50%;top:50%;width:calc(var(--s) * .27);height:calc(var(--s) * .27);margin:calc(var(--s) * -.135) 0 0 calc(var(--s) * -.135);border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;animation:pulse 3.2s ease-in-out infinite}
+.core svg{width:42%;height:42%}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 12px color-mix(in srgb,var(--accent) 16%,transparent),0 0 0 28px color-mix(in srgb,var(--accent) 7%,transparent)}50%{box-shadow:0 0 0 20px color-mix(in srgb,var(--accent) 12%,transparent),0 0 0 46px color-mix(in srgb,var(--accent) 3%,transparent)}}
+@media (prefers-reduced-motion:reduce){.ring,.node .ni,.core,.hero-badge i{animation:none}}
+.feats{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0 32px;margin-top:64px;border-top:1px solid var(--line)}
+.feat{display:flex;gap:16px;align-items:flex-start;padding-top:24px}
+.feat .ft{flex:0 0 46px;height:46px;border-radius:14px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--accent);background:var(--card)}
+.feat .ft svg{width:22px;height:22px}
+.feat h3{margin:2px 0 4px;font-size:17px;font-weight:600}
+.feat p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+@media (max-width:900px){.hero{padding-top:110px}.orbit-wrap{order:2}}
+
+/* marquee */
+.marquee{background:var(--band);color:var(--band-fg);padding:24px 0;overflow:hidden;white-space:nowrap}
+.mq-track{display:inline-flex;will-change:transform}
+.mq-track span{font-family:var(--d-font),sans-serif;font-weight:var(--d-weight);text-transform:uppercase;font-size:clamp(30px,4vw,60px);letter-spacing:var(--d-ls);padding-right:36px}
+.mq-track span b{color:var(--accent);font-weight:inherit;padding-left:36px}
+html[data-theme="bold"] .mq-track span b{color:#fff}
+
+/* team */
+.member{display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px);align-items:flex-start;padding:56px 0;border-top:1px solid var(--line)}
+.member .ph{flex:0 0 clamp(220px,24vw,320px);aspect-ratio:3/4;border-radius:var(--radius);overflow:hidden;background:var(--card)}
+.member .ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.15)}
+.member .bd{flex:1 1 480px;min-width:0}
+.member h3{font-size:clamp(40px,5vw,76px)}
+.member .role{margin:12px 0 0;color:var(--muted);font-size:15px;letter-spacing:.06em}
+.member blockquote{margin:28px 0 0;font-size:clamp(19px,1.7vw,24px);line-height:1.55;font-style:italic;font-weight:400;max-width:820px}
+html[data-theme="dark"] .member blockquote{font-weight:300}
+.member .btns{margin-top:32px}
+.mission{margin-top:100px}
+.mission h3{font-size:clamp(40px,5vw,72px);margin-bottom:40px}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));border-top:1px solid var(--line)}
+.pillar{padding:32px 28px 0 0}
+.pillar .n{color:var(--accent);font-weight:600;font-size:14px}
+.pillar h4{margin:12px 0 10px;font-family:var(--d-font),sans-serif;font-weight:var(--d-weight);text-transform:var(--d-case);letter-spacing:var(--d-ls);font-size:clamp(30px,3vw,44px);line-height:1}
+.pillar p{margin:0;color:var(--muted)}
+
+/* services */
+.svc{border-top:1px solid var(--line)}
+.svc a{display:flex;flex-wrap:wrap;align-items:center;gap:16px 28px;padding:30px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.svc .n{flex:0 0 40px;color:var(--accent);font-size:14px;font-weight:600}
+.svc .thumb{display:none;flex:0 0 88px;height:64px;border-radius:10px;overflow:hidden}
+.svc .thumb img{width:100%;height:100%;object-fit:cover}
+.svc .ttl{flex:1 1 360px;font-family:var(--d-font),sans-serif;font-weight:var(--d-weight);text-transform:var(--d-case);letter-spacing:var(--d-ls);font-size:clamp(30px,3.6vw,54px);line-height:1;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.svc .ds{flex:1 1 340px;color:var(--muted);font-size:16px;line-height:1.6}
+.svc .lm{flex:0 0 auto;font-weight:600;font-size:14px;display:inline-flex;gap:8px;align-items:center;transition:transform .4s}
+.svc a:hover .ttl{transform:translateX(16px)}
+.svc a:hover .lm{transform:translateX(6px)}
+@media (hover:none){.svc .thumb{display:block}}
+.hov{position:fixed;left:0;top:0;width:320px;height:230px;border-radius:var(--radius);pointer-events:none;z-index:40;transform:scale(0);opacity:0;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.hov img{width:100%;height:100%;object-fit:cover}
+
+/* portfolio */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+.tabs button{min-height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);font:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+.tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.cat-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.cat-head h3{font-size:clamp(32px,3.6vw,52px)}
+.cat-head span{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));gap:24px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.pcard .im{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}
+.pcard .im img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.pcard:hover .im img{transform:scale(1.06)}
+.pcard .tg{position:absolute;right:14px;top:14px;background:var(--accent);color:var(--on-accent);font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px}
+.pcard .bd{padding:26px;display:flex;flex-direction:column;gap:12px;flex:1}
+.pcard h4{margin:0;font-size:20px;line-height:1.3;font-weight:600}
+.pcard p{margin:0;color:var(--muted);font-size:15px;line-height:1.6}
+.pcard .cs{margin-top:auto;align-self:flex-start;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--fg);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.box{margin-top:72px;border-radius:calc(var(--radius) + 8px);background:var(--band);color:var(--band-fg);padding:clamp(40px,6vw,80px);display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-end}
+.box h3{font-size:clamp(40px,5vw,80px);flex:999 1 520px}
+.box p{margin:16px 0 0;opacity:.75;max-width:560px}
+.box .btn{border-color:var(--band-fg);color:var(--band-fg)}
+.box .btn.solid{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+html[data-theme="bold"] .box .hl{color:#fff}
+
+
+/* products */
+.prods{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,560px),1fr));gap:28px}
+.prod{background:var(--card);border:1px solid var(--line);border-radius:calc(var(--radius) + 6px);overflow:hidden;display:flex;flex-direction:column}
+.mock{position:relative;aspect-ratio:16/10;background:#0B0F14;color:#E6EDF3;padding:16px;display:flex;flex-direction:column;gap:12px;font-family:'DM Sans',system-ui,sans-serif;overflow:hidden}
+.mock::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:18px 18px;pointer-events:none}
+.mock>*{position:relative}
+.mbar{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px}
+.mbar b{font-size:13px;letter-spacing:.02em}
+.mbar .dots{display:flex;gap:6px}
+.mbar .dots i{width:9px;height:9px;border-radius:50%;background:#30363D}
+.live{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;background:rgba(63,185,80,.15);color:#3FB950;font-size:11px;font-weight:600}
+.live::before{content:"";width:6px;height:6px;border-radius:50%;background:#3FB950;animation:blink 1.6s infinite}
+.mgrid{flex:1;display:grid;grid-template-columns:1.4fr 1fr;gap:12px;min-height:0}
+.mpanel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;min-height:0;overflow:hidden}
+.mpanel h5{margin:0;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8B949E}
+.zones{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;flex:1}
+.zones span{border-radius:6px;background:rgba(63,185,80,.22);border:1px solid rgba(63,185,80,.35);position:relative}
+.zones span.w{background:rgba(210,153,34,.25);border-color:rgba(210,153,34,.5)}
+.zones span.a{background:rgba(248,81,73,.3);border-color:rgba(248,81,73,.6);animation:alarm 1.2s infinite}
+@keyframes alarm{50%{background:rgba(248,81,73,.6)}}
+.mline{width:100%;flex:1;min-height:40px}
+.mline path.l{fill:none;stroke-width:2.5;stroke-dasharray:600;stroke-dashoffset:600}
+.anim-in .mline path.l{animation:draw 2.4s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.alerts{display:flex;flex-direction:column;gap:6px}
+.alerts div{display:flex;align-items:center;gap:8px;font-size:11px;background:rgba(255,255,255,.04);border-radius:8px;padding:6px 8px}
+.alerts i{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+.heat{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;flex:1}
+.heat span{border-radius:4px;transition:background 1s}
+.bars{display:flex;align-items:flex-end;gap:10px;flex:1;min-height:50px}
+.bars .grp{flex:1;display:flex;align-items:flex-end;gap:3px;height:100%}
+.bars .grp i{flex:1;border-radius:4px 4px 0 0;transform-origin:bottom;transform:scaleY(0);transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.anim-in .bars .grp i{transform:scaleY(1)}
+.gauge{display:flex;align-items:center;gap:10px}
+.gauge svg{width:70px;height:40px}
+.prod .pb{padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:14px;flex:1}
+.prod .ptag{align-self:flex-start;font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--accent);color:var(--on-accent)}
+.prod h3{font-size:clamp(36px,4vw,60px)}
+.prod p{margin:0;color:var(--muted);line-height:1.65}
+.prod ul{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.prod li{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5}
+.prod li svg{width:18px;height:18px;flex:0 0 auto;color:var(--accent);margin-top:2px}
+.prod .btns{margin-top:auto;padding-top:14px}
+.prod .url{font-size:13px;color:var(--muted);word-break:break-all}
+.prod h3.disp{text-transform:none}
+@media (max-width:640px){.mock{aspect-ratio:auto}.mgrid{grid-template-columns:1fr}.mgrid .mpanel[style]{grid-column:auto!important}.zones{min-height:90px}.heat{min-height:100px}.mline{height:60px;flex:none}.bars{height:70px;flex:none}}
+
+
+.eco{background:var(--card);border:1px solid var(--line);border-radius:calc(var(--radius) + 6px);padding:clamp(24px,3.5vw,52px);display:flex;flex-direction:column;gap:clamp(36px,4vw,56px)}
+.eco+.eco{margin-top:32px}
+.eco-top{display:flex;flex-wrap:wrap;gap:40px;align-items:center}
+.eco-intro{flex:1 1 400px;display:flex;flex-direction:column;gap:16px}
+.eco-intro .ptag{align-self:flex-start;font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--accent);color:var(--on-accent)}
+.eco h3.disp{font-size:clamp(46px,5.4vw,88px);text-transform:none}
+.eco-tag{margin:0;font-size:clamp(18px,1.5vw,21px);line-height:1.55;color:var(--muted);max-width:560px}
+.eco-intro .btns{margin-top:10px}
+.eco-top .mock{flex:1.25 1 460px;border-radius:18px}
+.eco-flow{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px}
+.bus{position:absolute;left:23px;right:23px;top:22px;height:2px;background:repeating-linear-gradient(90deg,var(--accent) 0 10px,transparent 10px 20px);opacity:.7;animation:busx .8s linear infinite}
+@keyframes busx{to{background-position:20px 0}}
+@keyframes busy{to{background-position:0 20px}}
+.stage{position:relative;display:flex;flex-direction:column;gap:6px;min-width:0}
+.stage .snode{width:46px;height:46px;border-radius:50%;background:var(--card);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;font-size:14px;position:relative;z-index:1;margin-bottom:12px;transition:background .4s,color .4s,transform .4s}
+.stage.on .snode{background:var(--accent);color:var(--on-accent);transform:scale(1.12)}
+.st-sub{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.stage h4{margin:0 0 10px;font-family:var(--d-font),sans-serif;font-weight:var(--d-weight);text-transform:var(--d-case);letter-spacing:var(--d-ls);font-size:clamp(22px,1.9vw,30px);line-height:1;overflow-wrap:anywhere}
+.stage ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.stage li{font-size:14px;line-height:1.45;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);transition:border-color .4s,transform .4s}
+.stage.on li{border-color:color-mix(in srgb,var(--accent) 55%,var(--line))}
+.eco-foot{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;padding-top:28px;border-top:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:500;background:var(--bg)}
+@media (max-width:1100px){.eco-flow{grid-template-columns:1fr;gap:28px}.bus{left:22px;right:auto;top:0;bottom:0;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--accent) 0 10px,transparent 10px 20px);animation:busy .8s linear infinite}.stage{padding-left:66px}.stage .snode{position:absolute;left:0;top:0}}
+
+
+.ptag-sm{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;width:100%}
+.sv-hero.pr-hero{min-height:auto;padding:150px 0 90px}
+.sv-hero.pr-hero .bg{top:0;bottom:0;background:#0B0F14;background-image:radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px);background-size:22px 22px}
+.sv-hero.pr-hero::after{background:radial-gradient(ellipse 60% 60% at 75% 50%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 70%)}
+.pr-hero .wrap{display:flex;flex-wrap:wrap;gap:48px;align-items:center}
+.pr-copy{flex:1 1 440px;min-width:0}
+.sv-hero.pr-hero h1{font-size:clamp(46px,5.2vw,92px);text-transform:none}
+#prodList .ttl{text-transform:none}
+.pr-mock{flex:1.15 1 460px;min-width:0}
+.pr-mock .mock{border-radius:18px;border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.pr-over{font-size:clamp(20px,1.9vw,28px);line-height:1.55;margin:0;max-width:1100px}
+.pr-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}
+.pr-h3{font-size:clamp(32px,3.2vw,48px);margin-bottom:24px}
+.pr-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px}
+.pr-list li{display:flex;gap:12px;align-items:flex-start;font-size:16px}
+.pr-list svg{width:22px;height:22px;flex:0 0 auto;color:var(--accent)}
+.pr-dep{display:flex;flex-direction:column;gap:18px}
+.pr-dep div{border-left:3px solid var(--accent);padding-left:16px}
+.pr-dep b{font-size:18px}
+.pr-dep p{margin:6px 0 0;color:var(--muted);line-height:1.6}
+.pr-url{font-size:14px;opacity:.6;word-break:break-all}
+
+
+.pr-shot{display:block;width:100%;padding:0;border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden;background:#0B0F14;cursor:zoom-in;box-shadow:0 30px 80px rgba(0,0,0,.5);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.pr-shot:hover{transform:translateY(-4px)}
+.pr-shot .bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.08);color:#8B949E;font-size:12px;font-family:'DM Sans',sans-serif}
+.pr-shot .bar i{width:9px;height:9px;border-radius:50%;background:#30363D}
+.pr-shot .bar span{margin-left:8px}
+.pr-shot img{width:100%;height:auto}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:22px}
+.g-item{margin:0;display:flex;flex-direction:column;gap:12px}
+.g-item button{display:block;padding:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#0B0F14;aspect-ratio:4/3;cursor:zoom-in}
+.g-item img{width:100%;height:100%;object-fit:cover;object-position:top;}
+.g-item img.wide{object-fit:contain;object-position:center;padding:10px}
+.g-item img{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.g-item button:hover img{transform:scale(1.04)}
+.g-item figcaption{font-size:15px;color:var(--muted);line-height:1.5}
+.lb{position:fixed;inset:0;z-index:200;background:rgba(5,6,8,.92);display:flex;align-items:center;justify-content:center;padding:4vh 4vw;cursor:zoom-out}
+.lb[hidden]{display:none}
+.lb img{max-width:100%;max-height:100%;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb-x{position:absolute;top:18px;right:22px;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font-size:28px;line-height:1;cursor:pointer}
+
+/* why us stack */
+.stack{display:flex;flex-direction:column;gap:24px}
+.card{position:sticky;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(28px,4vw,56px);display:flex;flex-wrap:wrap;gap:24px 56px;min-height:340px;transform-origin:center top;will-change:transform}
+.card .num{font-family:var(--d-font),sans-serif;font-weight:var(--d-weight);font-size:clamp(80px,10vw,150px);line-height:.8;color:var(--accent);flex:0 0 auto}
+.card .ct{flex:1 1 420px;display:flex;flex-direction:column;gap:16px;justify-content:center}
+.card h3{font-size:clamp(32px,3.6vw,56px)}
+.card p{color:var(--muted);line-height:1.65;margin:0;font-size:17px;max-width:640px}
+.card .ln{height:2px;background:var(--accent);margin-top:8px;transform-origin:left}
+
+/* physics */
+.phys{position:relative;height:clamp(420px,46vw,560px);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--card);touch-action:pan-y}
+.phys.static{display:flex;flex-wrap:wrap;gap:12px;align-content:flex-end;padding:24px}
+.tag{display:inline-flex;align-items:center;padding:0 clamp(18px,2vw,28px);height:clamp(46px,4.6vw,66px);border-radius:999px;background:var(--tag-bg);color:var(--tag-fg);font-family:var(--d-font),sans-serif;font-weight:var(--d-weight);text-transform:var(--d-case);letter-spacing:var(--d-ls);font-size:clamp(17px,2vw,28px);white-space:nowrap;user-select:none;cursor:grab}
+.tag.alt{background:var(--accent);color:var(--on-accent)}
+.phys:not(.static) .tag{position:absolute;left:0;top:0;transform:translate(-999px,-999px)}
+.phys-hint{position:absolute;top:18px;left:22px;color:var(--muted);font-size:13px;pointer-events:none;z-index:1}
+
+/* faq */
+.faq-wrap{display:flex;flex-wrap:wrap;gap:48px}
+.faq-wrap .sec-head{flex:1 1 360px;display:block;margin:0}
+.faq-wrap .sec-head .lead{margin-top:20px}
+.faqs{flex:2 1 600px;border-top:1px solid var(--line)}
+.faq{border-bottom:1px solid var(--line)}
+.faq button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;background:none;border:0;color:var(--fg);font:inherit;font-size:clamp(18px,1.6vw,22px);font-weight:500;text-align:left;cursor:pointer;min-height:44px}
+.faq .pm{flex:0 0 40px;height:40px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:transform .4s,background .3s,color .3s}
+.faq.open .pm{transform:rotate(45deg);background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.faq .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)}
+.faq.open .ans{grid-template-rows:1fr}
+.faq .ans>div{overflow:hidden}
+.faq .ans p{margin:0;padding:0 56px 26px 0;color:var(--muted);line-height:1.7}
+.still{margin-top:48px;border:1px solid var(--line);border-radius:var(--radius);padding:36px;display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;background:var(--card)}
+.still h3{font-size:clamp(28px,2.8vw,40px)}
+.still p{margin:10px 0 0;color:var(--muted);max-width:460px}
+
+/* contact */
+.contact{border-top:1px solid var(--line)}
+.ccards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.cc{border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:var(--card)}
+.cc svg{width:26px;height:26px;color:var(--accent)}
+.cc h3{margin:16px 0 4px;font-size:18px;font-weight:600}
+.cc .v{font-weight:600;word-break:break-word}
+.cc .nt{color:var(--muted);font-size:14px;margin-top:2px}
+.offices-h{font-size:clamp(40px,5vw,72px);margin:80px 0 32px}
+.offices{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.office{border-top:2px solid var(--fg);padding-top:20px}
+.office h4{margin:0 0 8px;font-size:18px}
+.office p{margin:0;color:var(--muted);line-height:1.6}
+.cgrid{display:flex;flex-wrap:wrap;gap:24px;margin-top:80px}
+.panel{border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,3vw,40px);background:var(--card)}
+.cgrid>.panel{flex:1 1 480px}
+.cgrid .side{flex:1 1 420px;display:flex;flex-direction:column;gap:24px}
+.panel h3{margin:0 0 24px;font-size:24px;font-weight:600}
+form .row{display:flex;flex-wrap:wrap;gap:16px}
+form .row>div{flex:1 1 200px}
+form label{display:block;font-size:14px;color:var(--muted);margin:0 0 6px}
+form .f{margin-bottom:16px}
+form input,form textarea{width:100%;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font:inherit;font-size:15px;outline:none;transition:border-color .3s}
+form input:focus,form textarea:focus{border-color:var(--accent)}
+form input::placeholder,form textarea::placeholder{color:var(--muted);opacity:.8}
+.form-note{margin:14px 0 0;font-size:14px;color:var(--muted);min-height:1em}
+.socials{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.socials a{display:flex;align-items:center;gap:12px;padding:16px;border:1px solid var(--line);border-radius:14px;text-decoration:none;font-size:14px;font-weight:500;min-height:44px;transition:background .3s}
+.socials a:hover{background:var(--bg)}
+.socials svg{width:20px;height:20px;flex:0 0 auto}
+.stats{display:flex;flex-direction:column;gap:22px}
+.stat{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+.stat .v{font-family:var(--d-font),sans-serif;font-weight:var(--d-weight);font-size:clamp(52px,5vw,76px);line-height:1;letter-spacing:var(--d-ls);color:var(--accent);min-width:2.2em}
+.stat .l{font-weight:600}
+.stat .s{color:var(--muted);font-size:14px}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:72px 0 110px}
+.fgrid{display:flex;flex-wrap:wrap;gap:48px}
+.fgrid .about{flex:2 1 340px;max-width:420px}
+.fgrid .about p{color:var(--muted);font-size:14px;line-height:1.7}
+.fgrid .col{flex:1 1 180px}
+.fgrid h4{margin:0 0 16px;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.fgrid ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.fgrid li a{color:var(--muted);text-decoration:none;font-size:14px}
+.fgrid li a:hover{color:var(--fg)}
+.fsoc{display:flex;gap:10px;margin-top:20px}
+.fsoc a{width:44px;height:44px;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.fsoc svg{width:18px;height:18px}
+.fbot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:56px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+.fbot a{text-decoration:none}
+
+/* service detail view */
+.sv-hero{position:relative;min-height:94vh;display:flex;align-items:center;color:#fff;overflow:hidden;padding:140px 0 80px}
+.sv-hero .bg{position:absolute;left:0;right:0;top:-12%;bottom:-12%;background-size:cover;background-position:center;will-change:transform}
+.sv-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,.82),rgba(10,10,12,.7) 50%,rgba(10,10,12,.92))}
+.sv-hero .wrap{position:relative;z-index:1;width:100%}
+.sv-back{display:inline-flex;align-items:center;gap:8px;color:#fff;opacity:.75;text-decoration:none;font-size:14px;min-height:44px}
+.sv-back:hover{opacity:1}
+.sv-chip{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:500;margin-top:18px}
+.sv-chip svg{width:16px;height:16px;color:var(--accent)}
+.sv-hero h1{font-size:clamp(54px,8.6vw,148px);color:var(--accent);margin-top:28px;max-width:1200px}
+html[data-theme="bold"] .sv-hero h1{color:#fff}
+.sv-tag{font-size:clamp(22px,2.2vw,32px);font-weight:500;margin:22px 0 0;max-width:900px}
+.sv-desc{font-size:18px;line-height:1.65;opacity:.78;margin:18px 0 0;max-width:760px}
+.sv-hero .btns{margin-top:40px}
+.sv-hero .btn{border-color:#fff;color:#fff}
+.sv-hero .btn.solid{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.sv-form{max-width:900px}
+.icon-tile{width:56px;height:56px;border-radius:16px;background:color-mix(in srgb,var(--accent) 16%,transparent);display:flex;align-items:center;justify-content:center}
+.icon-tile svg{width:26px;height:26px;color:var(--accent)}
+html[data-theme="bold"] .icon-tile svg{color:var(--accent)}
+.why3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.wcard{border:1px solid var(--line);border-radius:var(--radius);padding:32px;background:var(--card);display:flex;flex-direction:column;gap:10px;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.wcard:hover{transform:translateY(-6px);border-color:var(--accent)}
+.wcard .lb{margin-top:14px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.wcard h3{margin:0;font-size:22px;font-weight:600}
+.wcard p{margin:0;color:var(--muted);line-height:1.65}
+.ind2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:20px}
+.icard{border:1px solid var(--line);border-radius:var(--radius);padding:clamp(28px,3vw,44px);background:var(--card)}
+.icard h3{font-size:clamp(30px,3vw,46px)}
+.icard p{margin:14px 0 0;color:var(--muted);line-height:1.65}
+.icard ul{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.icard li{display:flex;align-items:center;gap:10px;font-size:15px}
+.icard li svg{width:20px;height:20px;flex:0 0 auto;color:var(--accent)}
+.tech4{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.tcard{border:1px solid var(--line);border-radius:var(--radius);padding:30px;background:var(--card);display:flex;flex-direction:column;gap:10px;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.tcard:hover{transform:translateY(-6px);border-color:var(--accent)}
+.tcard h3{margin:14px 0 0;font-size:20px;font-weight:600}
+.tcard p{margin:0;color:var(--muted);font-size:15px;line-height:1.6}
+.proc{position:relative}
+.proc-line{position:absolute;left:0;right:0;top:32px;height:2px;background:var(--line)}
+.proc-line i{position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:left}
+.steps{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px}
+.step .no{width:64px;height:64px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;position:relative}
+.step h3{margin:22px 0 8px;font-size:20px;font-weight:600}
+.step p{margin:0;color:var(--muted);font-size:15px;line-height:1.6}
+.step ul{list-style:none;margin:16px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.step li{border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;background:var(--card)}
+@media (max-width:900px){.proc-line{display:none}}
+
+/* theme switch */
+.switch{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:80;display:flex;align-items:center;gap:4px;padding:6px;border-radius:999px;background:#141414;color:#fff;box-shadow:0 10px 40px rgba(0,0,0,.25);font-family:'DM Sans',sans-serif}
+.switch span{font-size:12px;padding:0 10px 0 12px;color:#bbb}
+.switch button{border:0;background:transparent;color:#fff;font:inherit;font-size:13px;font-weight:500;padding:0 16px;min-height:40px;border-radius:999px;cursor:pointer}
+.switch button[aria-pressed="true"]{background:#fff;color:#141414}
+@media (max-width:640px){.switch span{display:none}.switch button{padding:0 12px}}
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+<div class="pre" aria-hidden="true"><div class="disp">ACNS</div><div class="pre-num"><span id="preNum">0</span>%</div></div>
+<div class="cur" aria-hidden="true"></div>
+<div class="hov" aria-hidden="true"><img id="hovImg" src="img/web-apps.webp" alt=""></div>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#home" class="logo">ACNS AI SOLUTIONS<i>.</i></a>
+    <nav class="main" aria-label="Main">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#products">Products</a><a href="#why-us">Why Us</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    </nav>
+    <div class="hdr-right">
+    <button type="button" class="theme-tg" aria-label="Switch light / dark theme"><svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg><svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+    <span class="mag hdr-cta"><a href="#contact" class="btn solid"><span class="t">Get Started</span></a></span>
+    <button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button>
+    </div>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile">
+    <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a><a href="#products">Products</a><a href="#why-us">Why Us</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
+    <a href="#contact" class="btn solid" style="margin-top:16px;border-bottom:0">Get Started</a>
+  </nav>
+</header>
+
+<main id="homeView">
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg" aria-hidden="true"><div class="dots"></div><div class="spot"></div></div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="hero-badge" data-fade><i></i>ACNS AI SOLUTIONS LLP</span>
+          <h1 class="disp"><span class="ln"><span class="w"><span class="wi">Engineering</span></span> <span class="w"><span class="wi">the</span></span></span><br><span class="ln"><span class="w"><span class="wi hl">Future.</span></span> <span class="w"><span class="wi hl">Today.</span></span></span></h1>
+          <p class="lead" data-fade>At ACNS AI SOLUTIONS LLP, we build transformative digital solutions, from immersive games and intelligent AI agents to full-scale AI ecosystems.</p>
+          <div class="btns" data-fade>
+            <span class="mag"><a href="#contact" class="btn solid"><span class="t">Start Your Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
+            <span class="mag"><a href="#services" class="btn"><span class="t"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> View Capabilities</span></a></span>
+          </div>
+        </div>
+        <div class="orbit-wrap" aria-hidden="true">
+          <div class="orbit" id="orbit">
+            <div class="ring r2" id="ring2"></div>
+            <div class="ring r1" id="ring1"></div>
+            <div class="core"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V6a3 3 0 0 0-3-3zM15 3a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <div class="feats">
+        <div class="feat" data-fade><span class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 3a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V6a3 3 0 0 0-3-3zM15 3a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></svg></span><div><h3>AI-Powered Solutions</h3><p>Intelligent systems from machine learning to agents, built to scale.</p></div></div>
+        <div class="feat" data-fade><span class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/></svg></span><div><h3>Full-Stack Expertise</h3><p>End-to-end development from conception to deployment and scaling.</p></div></div>
+        <div class="feat" data-fade><span class="ft"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM12 13l9-5M12 13v8M12 13L3 8"/></svg></span><div><h3>Immersive Experiences</h3><p>VR/AR applications and interactive gaming solutions.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true"><div class="mq-track" id="mq"></div></div>
+
+  <!-- ABOUT / TEAM -->
+  <section class="pad" id="about">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="disp" data-split>Our <span class="hl">Team</span></h2><p class="lead" data-reveal>The minds behind ACNS AI Solutions, blending strategy, engineering, and design to build what's next.</p></div>
+
+      <article class="member">
+        <div class="ph" data-reveal><img src="img/chandra-shekhar-saraswat.webp" alt="CHANDRA SHEKHAR SARASWAT" data-parallax></div>
+        <div class="bd">
+          <h3 class="disp" data-split>CHANDRA SHEKHAR SARASWAT</h3>
+          <p class="role">CEO, TECH STRATEGIST , ACNS AI SOLUTIONS LLP</p>
+          <blockquote data-invert>"Chandra Shekhar is a visionary technologist and the architect behind next-generation digital transformation. As CEO &amp; Tech Strategist, he commands the deployment of AI-enabled ecosystems engineered to think, adapt, and evolve autonomously. Leveraging deep expertise in full-stack architecture, modular cloud systems, and early-stage AGI principles, Chandra transforms static technologies into self-improving operational engines. Across FinTech, HealthTech, and SaaS, his ecosystem-first approach ensures businesses are built to anticipate future innovation, not just react to it."</blockquote>
+          <div class="btns">
+            <span class="mag"><a href="https://www.linkedin.com/in/chandra-shekhar-s-b23216256/" class="btn solid"><span class="t">Let's Build Together</span></a></span>
+            <span class="mag"><a href="https://www.linkedin.com/in/chandra-shekhar-s-b23216256/" class="btn"><span class="t"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.6V21h-4v-5.6c0-1.35-.03-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3V21H9z"/></svg> Connect on LinkedIn</span></a></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="ph" data-reveal><img src="img/shivam-bhardwaj.webp" alt="SHIVAM BHARDWAJ" data-parallax></div>
+        <div class="bd">
+          <h3 class="disp" data-split>SHIVAM BHARDWAJ</h3>
+          <p class="role">EXTERNAL TECHNICAL ADVISOR</p>
+          <blockquote data-invert>"Shivam B. serves as an External Technical Advisor for our custom development projects. He brings an engineering background and specialized certifications in Enterprise Cloud Ecosystems. Shivam focuses exclusively on technical logic design, custom programming architecture, and complex workflow automation. By operating strictly in an advisory, non-operational capacity on a project-by-project basis, he ensures all platform integrations align with enterprise scalability benchmarks."</blockquote>
+          <div class="btns">
+            <span class="mag"><a href="https://www.linkedin.com/in/shivam-bhardwaj-308681182/" class="btn solid"><span class="t">Let's Build Together</span></a></span>
+            <span class="mag"><a href="https://www.linkedin.com/in/shivam-bhardwaj-308681182/" class="btn"><span class="t"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.6V21h-4v-5.6c0-1.35-.03-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3V21H9z"/></svg> Connect on LinkedIn</span></a></span>
+          </div>
+        </div>
+      </article>
+
+      <div class="mission">
+        <h3 class="disp" data-split>Our Mission</h3>
+        <div class="pillars">
+          <div class="pillar" data-reveal><span class="n">01</span><h4>Think First</h4><p>We approach every challenge with strategic thinking and creative problem-solving.</p></div>
+          <div class="pillar" data-reveal><span class="n">02</span><h4>Build Smart</h4><p>Our solutions are crafted with precision, scalability, and user experience in mind.</p></div>
+          <div class="pillar" data-reveal><span class="n">03</span><h4>Innovate Always</h4><p>We're constantly exploring new technologies and methodologies to stay ahead.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="pad" id="services" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="disp" data-split>Our <span class="hl">Services</span></h2><p class="lead" data-reveal>Cutting edge digital solutions powered by advanced technology and innovative design</p></div>
+      <div class="svc" id="svcList"></div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="pad" id="portfolio" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="disp" data-split>Our <span class="hl">Portfolio</span></h2><p class="lead" data-reveal>Discover some of our most innovative solutions that have transformed businesses across industries.</p></div>
+      <div class="tabs" role="tablist" aria-label="Project categories" id="tabs"></div>
+      <div class="cat-head"><h3 class="disp" id="catLabel">Web Applications</h3><span id="catCount"></span></div>
+      <div class="grid" id="grid" role="tabpanel"></div>
+      <div class="box">
+        <div style="flex:999 1 520px">
+          <h3 class="disp">Explore More <span class="hl">Projects</span></h3>
+          <p>See our complete portfolio with detailed case studies and discover how we can bring your vision to life.</p>
+        </div>
+        <div class="btns">
+          <span class="mag"><a href="#portfolio" class="btn solid"><span class="t">View Full Portfolio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></span>
+          <span class="mag"><a href="#contact" class="btn"><span class="t">Get Started</span></a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="pad" id="products" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="disp" data-split>Our <span class="hl">Products</span></h2><p class="lead" data-reveal>Our own software platforms — built, owned and run by ACNS AI SOLUTIONS LLP, ready to deploy for your business.</p></div>
+      <div class="svc" id="prodList"></div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="pad" id="why-us" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="disp" data-split>Why Choose <span class="hl">ACNS ?</span></h2><p class="lead" data-reveal>Passionate about craft. Obsessed with results. Here's what sets us apart in the digital landscape.</p></div>
+      <div class="stack">
+        <article class="card"><div class="num">01</div><div class="ct"><h3 class="disp">Innovation at the core of everything</h3><p>We stay ahead of the curve, adopting emerging technologies and creative approaches to solve complex problems in smarter ways.</p><div class="ln"></div></div></article>
+        <article class="card"><div class="num">02</div><div class="ct"><h3 class="disp">A team that treats your goals as ours</h3><p>Developers, designers, and strategists who collaborate closely with you, aligning every decision with your business objectives.</p><div class="ln"></div></div></article>
+        <article class="card"><div class="num">03</div><div class="ct"><h3 class="disp">Proven track record with startups, agencies, and scale-ups</h3><p>We've successfully partnered with organizations at every stage, from early-stage startups to established enterprises seeking digital transformation.</p><div class="ln"></div></div></article>
+        <article class="card"><div class="num">04</div><div class="ct"><h3 class="disp">Design, develop, deploy — and scale with you</h3><p>Our partnership doesn't end at launch. We provide ongoing support, optimization, and scaling solutions as your business grows and evolves.</p><div class="ln"></div></div></article>
+      </div>
+      <div class="box">
+        <div style="flex:999 1 520px">
+          <h3 class="disp">Ready to Transform Your <span class="hl">Vision into Reality?</span></h3>
+          <p>Let's collaborate to build something extraordinary. Your next breakthrough starts with a conversation.</p>
+        </div>
+        <span class="mag"><a href="#contact" class="btn solid"><span class="t">Start a Conversation</span></a></span>
+      </div>
+      <div class="phys static" id="phys" style="margin-top:72px" aria-label="Our services as tags"><span class="phys-hint">( drag &amp; throw )</span></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="pad" id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div class="faq-wrap">
+        <div class="sec-head"><h2 class="disp" data-split>Frequently Asked <span class="hl">Questions</span></h2><p class="lead" data-reveal>Everything you need to know about working with us.</p></div>
+        <div class="faqs" id="faqs"></div>
+      </div>
+      <div class="still" data-reveal>
+        <div><h3 class="disp">Still have questions?</h3><p>We're here to help! Reach out to our team for personalized answers and project consultation.</p></div>
+        <span class="mag"><a href="#contact" class="btn solid"><span class="t">Contact Us</span></a></span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<main id="svcView" hidden></main>
+
+  <!-- CONTACT (shared by home + service pages) -->
+  <section class="pad contact" id="contact">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="disp" data-split>Get In <span class="hl">Touch</span></h2><p class="lead" data-reveal>Ready to transform your business with cutting-edge technology? Let's discuss how we can help bring your vision to life.</p></div>
+      <div class="ccards">
+        <div class="cc" data-reveal><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg><h3>Email Us</h3><div class="v"><a href="mailto:connect@acnsaisolutions.com">connect@acnsaisolutions.com</a></div><div class="nt">Business inquiries</div></div>
+        <div class="cc" data-reveal><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg><h3>Call Us</h3><div class="v"><a href="tel:+919289225663">+91 9289225663</a></div><div class="nt">24/7 Support Available</div></div>
+        <div class="cc" data-reveal><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/></svg><h3>WhatsApp</h3><div class="v"><a href="https://wa.me/919667779076">+91 9667779076</a></div><div class="nt">Instant responses</div></div>
+      </div>
+
+      <h3 class="disp offices-h" data-split>Our <span class="hl">Offices</span></h3>
+      <div class="offices">
+        <div class="office" data-reveal><h4>New Delhi Office</h4><p>Asset Area, Novotel Pullman Hotel, Northern Access Rd 5th Floor, New Delhi, Delhi 110037</p></div>
+        <div class="office" data-reveal><h4>Ghaziabad Office</h4><p>A-143 7-c, Shalimar Garden Extension II, Shalimar Garden, Sahibabad, Ghaziabad, Uttar Pradesh 201005</p></div>
+      </div>
+
+      <div class="cgrid">
+        <div class="panel" data-reveal>
+          <h3>Send Us a Message</h3>
+          <form id="cform" novalidate>
+            <div class="row">
+              <div class="f"><label for="fn">First Name *</label><input id="fn" required placeholder="John"></div>
+              <div class="f"><label for="ln">Last Name *</label><input id="ln" required placeholder="Doe"></div>
+            </div>
+            <div class="f"><label for="em">Email Address *</label><input id="em" type="email" required placeholder="john@example.com"></div>
+            <div class="f"><label for="phn">Phone Number *</label><input id="phn" required placeholder="+91 9876543210"></div>
+            <div class="f"><label for="sb">Subject *</label><input id="sb" required placeholder="Project Discussion"></div>
+            <div class="f"><label for="msg">Message *</label><textarea id="msg" rows="4" required placeholder="Tell us about your project..."></textarea></div>
+            <span class="mag"><button type="submit" class="btn solid"><span class="t">Send Message</span></button></span>
+            <p class="form-note" id="formNote" role="status"></p>
+          </form>
+        </div>
+        <div class="side">
+          <div class="panel" data-reveal>
+            <h3>Connect With Us</h3>
+            <div class="socials">
+              <a href="https://www.instagram.com/acnsaisolutions/"><svg viewBox="0 0 24 24" fill="none" stroke="#E1306C" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#E1306C"/></svg>Follow us on Instagram</a>
+              <a href="https://wa.me/919667779076"><svg viewBox="0 0 24 24" fill="none" stroke="#22A355" stroke-width="1.8" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12z"/></svg>WhatsApp</a>
+              <a href="https://www.linkedin.com/company/acns-aisolutions/"><svg viewBox="0 0 24 24" fill="#2D7FF9" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.6V21h-4v-5.6c0-1.35-.03-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3V21H9z"/></svg>Follow us on LinkedIn</a>
+            </div>
+          </div>
+          <div class="panel" data-reveal>
+            <h3>Why Choose Us?</h3>
+            <div class="stats">
+              <div class="stat"><span class="v"><span data-count="25">25</span>+</span><div><div class="l">25+ Projects Delivered</div><div class="s">Across 56+ cities worldwide</div></div></div>
+              <div class="stat"><span class="v"><span data-count="20">20</span>+</span><div><div class="l">20+ Expert Team Members</div><div class="s">Developers, designers &amp; strategists</div></div></div>
+              <div class="stat"><span class="v"><span data-count="1">1</span>+</span><div><div class="l">1+ Years of Innovation</div><div class="s">Since 2025, trusted globally</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="about">
+        <a href="#home" class="logo">ACNS AI SOLUTIONS LLP</a>
+        <p>Engineering the future today. We build transformative digital solutions, from immersive games and intelligent AI agents to full-scale AI ecosystems.</p>
+        <div class="fsoc">
+          <a href="#home" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.1l-6.8 7.8L22 21h-6.3l-4.9-6.4L5.2 21H2.1l7.3-8.3L2 3h6.4l4.4 5.9zm-1.1 16.2h1.7L7.4 4.7H5.6z"/></svg></a>
+          <a href="https://www.linkedin.com/company/acns-aisolutions/" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.6V21h-4v-5.6c0-1.35-.03-3.1-1.9-3.1-1.9 0-2.2 1.48-2.2 3V21H9z"/></svg></a>
+          <a href="#home" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9V21c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></a>
+          <a href="https://www.instagram.com/acnsaisolutionllp/" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+        </div>
+      </div>
+      <div class="col"><h4>Services</h4><ul><li><a href="#web-apps">Web Applications</a></li><li><a href="#mobile-apps">Mobile Applications</a></li><li><a href="#chatbot-development">AI Autonomous Agents</a></li><li><a href="#ar-vr-development">AR/VR Development</a></li><li><a href="#game-development">Game Development</a></li></ul></div>
+      <div class="col"><h4>Company</h4><ul><li><a href="#about">About Us</a></li><li><a href="#portfolio">Our Work</a></li><li><a href="#why-us">Why Us</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    </div>
+    <div class="fbot"><span>© 2025 ACNS AI SOLUTIONS LLP. All rights reserved.</span><span><a href="#home">Privacy Policy</a> &nbsp;·&nbsp; <a href="#home">Terms of Service</a></span></div>
+  </div>
+</footer>
+
+<div class="lb" id="lb" hidden><button type="button" class="lb-x" aria-label="Close">×</button><img id="lbImg" alt=""></div>
+
+
+<script>
+var DATA = {"cats": [{"id": "web", "label": "Web Applications"}, {"id": "saas", "label": "SAAS Solutions"}, {"id": "mobile", "label": "Mobile Applications"}, {"id": "ai", "label": "Ai Development"}, {"id": "fintech", "label": "Fintech Development"}, {"id": "chatbot", "label": "Chatbot Development"}], "projects": [{"t": "Paper Trading & Strategy Simulation Platform", "tag": "FinTech", "d": "TradingSmart.ai is an AI-powered live market simulation and paper trading platform designed to help traders test, validate, optimize, and learn from trading strategies without risking real capital. It combines real-time market data, AI-assisted trade validation, simulation engines, Telegram-based alerts, educational micro-learning systems, strategy conversion tools, and audit-driven analytics into a unified strategy experimentation ecosystem.", "img": "img/ai-automation.webp", "c": "web"}, {"t": "Recoup Health", "tag": "Healthcare & Medical Technology", "d": "A comprehensive digital healthcare ecosystem developed for a modern orthopedic and holistic healthcare institution focused on patient wellness, medical education, ecommerce enablement, and AI-driven healthcare engagement. The platform unified healthcare services, educational workflows, ecommerce operations, AI-powered patient interaction, and consultation booking into a single scalable ecosystem.", "img": "img/ai-calling.webp", "c": "web"}, {"t": "Algo Trading - TradingSmart AI", "tag": "Fintech", "d": "TradingSmart.AI is an AI-powered automated trading platform that enables traders to automate, analyze, and scale their trading strategies without coding. The platform provides AI-validated trade execution, real-time analytics, multi-broker connectivity, and advanced risk management tools for emotion-free trading.", "img": "img/saas.webp", "c": "web"}, {"t": "UPSC Aids – Personalized Mentorship & UPSC Preparation Dashboard", "tag": "Ed Tech", "d": "A dedicated web platform built for aspirants preparing for the Union Public Service Commission (UPSC) exams. The platform connects students with mentors, provides daily preparation insights, tracks progress, and delivers customized support materials to improve outcomes.", "img": "img/ui-ux.webp", "c": "web"}, {"t": "Interview Pro – Professional Interview Scheduling & Management Platform", "tag": "SaaS", "d": "A smart, cloud-based interview management system designed to streamline the hiring process from scheduling to final assessment. Built with seamless Zoom integration, the platform allows recruiters and hiring managers to schedule, conduct, and manage interviews efficiently — all from one dashboard.", "img": "img/web-apps.webp", "c": "web"}, {"t": "VirtuTeams – Team Management & Remote Operations Platform", "tag": "SaaS", "d": "A cloud-based team and workforce management platform built to streamline how remote and on-ground teams operate. Designed for enterprises and service-based businesses, it helps manage employee profiles, monitor project tasks in real-time, and foster seamless collaboration across departments and countries.", "img": "img/saas.webp", "c": "web"}, {"t": "StreamVerse – Smart Rental Management Platform", "tag": "SaaS", "d": "A digital platform built to streamline the rental and subscription-based business model for digital content, tools, or services. It enables users to explore, subscribe, and manage rentals with ease—while giving admins full control over user management, approvals, and content publishing with role-based access.", "img": "img/ai-agents.webp", "c": "web"}, {"t": "Fashion Journey Navigator – Personalized Style Discovery Platform", "tag": "E-commerce", "d": "A web-based platform designed to help users explore personalized fashion journeys based on their style, preferences, and seasonal trends. The goal was to create an engaging, intuitive interface that enhances the online fashion discovery experience with responsive design and high performance across all devices.", "img": "img/ui-ux.webp", "c": "web"}, {"t": "Mediverse Connect AI – AI-Powered Healthcare Networking Platform", "tag": "AI", "d": "An innovative healthcare networking platform that leverages AI to connect patients, healthcare professionals, and service providers. Developed end-to-end with a focus on smart AI integration, seamless user experience, and secure data management.", "img": "img/ai-agents.webp", "c": "web"}, {"t": "Projectsy.ai – AI-Powered Project & Task Management Platform", "tag": "SaaS", "d": "A cutting-edge AI-driven project management platform designed to streamline workflows, automate task allocation, and enhance team productivity. Built for modern organizations, it integrates intelligent suggestions, real-time updates, and intuitive dashboards to manage everything from simple tasks to complex project pipelines.", "img": "img/saas.webp", "c": "saas"}, {"t": "MediPulse – AI-Powered Digital Healthcare Platform", "tag": "Healthcare & Medical Technology", "d": "A modern AI-powered healthcare platform designed to streamline the complete digital healthcare journey for patients and healthcare professionals. It combines AI-assisted symptom analysis, telemedicine consultations, secure health record management, health analytics, and lab test booking into one unified healthcare ecosystem.", "img": "img/mobile-apps.webp", "c": "mobile"}, {"t": "Health@Home", "tag": "Healthcare & Medical Services Industry", "d": "A comprehensive healthcare technology platform developed to connect patients with healthcare providers through a fully integrated digital ecosystem. The ecosystem supports doctors, nurses, physiotherapists, caretakers, pharmacies, laboratories, and hospitals through scalable and secure healthcare workflows.", "img": "img/ai-calling.webp", "c": "mobile"}, {"t": "UrjaOne Nexus – Mobile Energy Services Marketplace", "tag": "Marketplace-as-a-Service", "d": "A mobile-first energy services marketplace, connecting users with EV charging stations, solar installers, and green energy service providers in their area. It simplifies the browsing, booking, and payment process for sustainable energy services while empowering users to track energy consumption and access transparent pricing.", "img": "img/iot.webp", "c": "mobile"}, {"t": "CoffeeLavka Express Track – Real-Time Coffee Order Tracking Platform", "tag": "Food Tech", "d": "A customer-facing order tracking system for a specialty coffee chain, providing real-time transparency to users regarding their order status — from brewing to dispatch. The platform improves customer experience, reduces support queries, and enhances brand reliability through smart, minimalist design.", "img": "img/mobile-apps.webp", "c": "mobile"}, {"t": "Crimson Classified Hub – Community-Driven Classifieds Platform", "tag": "Marketplace-as-a-Service", "d": "A modern, user-friendly classifieds platform where users can browse, post, and manage listings across categories such as real estate, vehicles, electronics, and local services. Designed to simplify local buying and selling through smart filters, secure user profiles, and intuitive workflows.", "img": "img/web-apps.webp", "c": "mobile"}, {"t": "Dubai Classifieds Pulse – Hyperlocal Classified Listings Platform", "tag": "Real Estate", "d": "A hyperlocal digital marketplace designed to connect Dubai residents with local sellers, buyers, and service providers. It enables quick listing and browsing of properties, vehicles, services, jobs, and more — all under one clean, mobile-first platform with fast listing workflows.", "img": "img/ar-vr.webp", "c": "mobile"}, {"t": "Ember – AI-Powered Soulmate Matching & Conversation Platform", "tag": "Social Networking", "d": "A modern relationship and compatibility platform designed to help users connect with their ideal match based on personality, behavior, and emotional compatibility—not just swipes. It leverages intelligent matching algorithms and interactive chat experiences to facilitate genuine connections.", "img": "img/ai-agents.webp", "c": "mobile"}, {"t": "Bharat Meds – TrackNow Medicine Delivery & Tracking App", "tag": "Health Tech", "d": "A mobile-first application developed to simplify the last-mile delivery and real-time tracking of medical orders. The app allows users to place orders, track delivery agents live, and receive updates on medicine dispatch status — ensuring timely access to critical healthcare products.", "img": "img/mobile-apps.webp", "c": "mobile"}, {"t": "Monitraq – AI-Powered Remote Patient Monitoring & Healthcare Ecosystem", "tag": "Healthcare & Medical Technology", "d": "A large-scale AI-powered healthcare ecosystem that evolved far beyond a standard Remote Patient Monitoring (RPM) platform. The system combines telemedicine, AI-assisted consultation, DICOM/radiology workflows, emergency healthcare systems, medical device integrations, insurance workflows, and real-time communication infrastructure into a single connected healthcare platform.", "img": "img/ai-automation.webp", "c": "ai"}, {"t": "Finnly — Multicurrency Crypto Wallet & Exchange", "tag": "Fintech", "d": "A multicurrency crypto wallet and exchange designed and engineered as a unified consumer surface: 20+ cryptocurrencies and stablecoins, in-app BTC/USDT swap, an NFT browser, an Earn module for staking yield, and a Buy/Sell flow connected to fiat debit cards — all in a dark, motion-led product system.", "img": "img/ai-automation.webp", "c": "fintech"}, {"t": "Fastnaire — Crypto Exchange & Gift Card Trading", "tag": "Fintech", "d": "A Nigeria-first crypto exchange that turns unused gift cards into BTC, USDT, or NGN in minutes. Users can deposit and withdraw across BTC/USDT/NGN wallets, borrow against crypto, and trade with a manual review desk that clears most quotes in under five minutes — wrapped in a polished iOS + Android experience.", "img": "img/iot.webp", "c": "fintech"}, {"t": "Chatly – AI Chatbot", "tag": "Productivity", "d": "A highly engaging AI chatbot that mimics human-like conversations using advanced natural language processing. Designed for productivity, casual companionship, and daily engagement across a wide user base.", "img": "img/ai-calling.webp", "c": "chatbot"}]};
+var SERVICES = [
+  ["Web Applications","Scalable web applications built with modern frameworks and architectures for optimal performance and maintainability.","web-apps"],
+  ["SAAS Solutions","End-to-end SaaS products with subscription management, multi-tenancy, and cloud-native infrastructure.","saas"],
+  ["Mobile Applications","Native and cross-platform mobile apps with intuitive user experiences.","mobile-apps"],
+  ["AR/VR Development","Digital immersion that educates, entertains, and transforms reality with cutting-edge AR/VR experiences.","ar-vr"],
+  ["Game Development","Where creativity meets code to build living, breathing virtual experiences.","game-dev"],
+  ["UI/UX Design","Human-centered design that balances beauty and usability for products people love to use.","ui-ux"],
+  ["Internet of Things (IoT)","Connected device ecosystems with real-time data, automation, and smart integrations.","iot"],
+  ["AI Autonomous Agents Development","Autonomous AI agents that reason, plan, and execute tasks across your workflows.","ai-agents"],
+  ["AI Calling Agency","Intelligent call automation systems with natural language processing capabilities.","ai-calling"],
+  ["AI Automation","Custom AI solutions to automate workflows and enhance business processes.","ai-automation"],
+  ["Salesforce Solutions","Empower your enterprise with intelligent CRM capabilities built for scale, from strategy and custom development to Sales, Service, and Marketing Cloud.","salesforce"]
+];
+var FAQS = [
+  ["What technologies do you specialize in?","We work across the full modern stack, including React, Next.js, Node.js, Python, React Native, Flutter, Unity for games and AR/VR, and a range of AI/ML frameworks. We choose the right tools for each project rather than forcing a one-size-fits-all approach."],
+  ["Do you provide ongoing support and maintenance?","Yes. Our partnership doesn't end at launch. We offer ongoing support, monitoring, optimization, and feature development plans to keep your product secure, performant, and evolving with your business."],
+  ["What is your development process?","We follow an agile, transparent process: discovery and strategy, UI/UX design, iterative development with regular demos, thorough testing, and a smooth deployment, followed by post-launch support. You stay involved at every milestone."],
+  ["How experienced are you with AI and machine learning?","AI is at the core of what we do. From autonomous agents and AI calling systems to custom automation and machine learning models, we design and ship intelligent systems built for real-world scale and impact."],
+  ["How do you structure your pricing?","Pricing depends on project scope and complexity. We offer fixed-price engagements for well-defined projects and flexible retainers for ongoing work. After an initial consultation, we provide a clear, transparent estimate."],
+  ["How do you handle project communication and collaboration?","We keep communication clear and frequent through your preferred channels, with regular updates, shared project boards, and scheduled demos so you always know exactly where your project stands."],
+  ["What industries do you work with?","We've delivered solutions across healthcare, fintech, marketplaces, social networking, education, and more. Our cross-industry experience helps us bring proven patterns and fresh perspectives to every project."]
+];
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+var ARROW = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+/* ---- render data-driven blocks ---- */
+document.getElementById('mq').innerHTML = (function(){ var s = SERVICES.map(function(x){ return '<span>' + esc(x[0]) + '<b>✦</b></span>'; }).join(''); return s + s; })();
+var SVC_DATA = [{"slug": "web-apps", "icon": "Globe", "title": "Web Applications", "short": "Scalable web applications built with modern frameworks and architectures for optimal performance and maintainability.", "tagline": "Engineering the Future of Digital Experiences", "description": "Transform your business with intelligent web applications that combine cutting-edge technology, stunning design, and seamless user experiences. From concept to deployment, we craft digital solutions that drive growth and exceed expectations.", "image": "/images/web-apps.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "We don't just build web applications – we engineer digital masterpieces that transform businesses and create lasting impact in the digital landscape.", "whyCards": [{"label": "Complete Solutions", "title": "Full-Stack Mastery", "icon": "Code2", "description": "End-to-end web application development from database design to user interface, ensuring seamless integration across all layers."}, {"label": "Cross-Platform", "title": "Universal Accessibility", "icon": "Globe", "description": "Responsive, progressive web applications that work flawlessly across all devices, browsers, and accessibility standards."}, {"label": "Blazing Fast", "title": "Performance Excellence", "icon": "Zap", "description": "Lightning-fast applications optimized for speed with advanced caching, code splitting, and performance monitoring."}], "solutionsHeading": "Tailored Solutions for Every Industry", "solutionsDescription": "From startups to enterprises, we create custom web applications that solve real business challenges and unlock new opportunities for growth.", "industries": [{"title": "E-Commerce Platforms", "description": "Next-generation online stores with AI-powered recommendations, real-time inventory, and seamless payment processing.", "features": ["Smart Product Recommendations", "Multi-Currency Support", "Advanced Analytics", "Mobile-First Design"]}, {"title": "Business Management Systems", "description": "Comprehensive ERP and CRM solutions that streamline operations and boost productivity across all departments.", "features": ["Workflow Automation", "Real-Time Reporting", "Team Collaboration", "API Integrations"]}], "techHeading": "Powered by Cutting-Edge Technology", "techDescription": "We leverage the latest technologies and frameworks to build applications that are not just functional, but future-ready and built to scale.", "techCards": [{"title": "Frontend Excellence", "icon": "Layers", "description": "Modern, interactive user interfaces that captivate and convert."}, {"title": "Backend Power", "icon": "Database", "description": "Robust server architecture that handles any load."}, {"title": "Cloud Infrastructure", "icon": "Cloud", "description": "Scalable cloud solutions for global reach and reliability."}, {"title": "AI Integration", "icon": "Cpu", "description": "Intelligent features that enhance user experience."}], "process": [{"title": "Discovery & Strategy", "description": "Deep dive into your business goals, user needs, and technical requirements to craft the perfect solution.", "points": ["Requirements Analysis", "Technical Architecture", "Project Roadmap"]}, {"title": "Design & Prototyping", "description": "Creating intuitive user experiences and stunning visual designs that align with your brand identity.", "points": ["UI/UX Design", "Interactive Prototypes", "Design System"]}, {"title": "Development & Integration", "description": "Building your application with clean, maintainable code and seamless third-party integrations.", "points": ["Core Development", "API Integration", "Database Setup"]}, {"title": "Testing & Optimization", "description": "Comprehensive testing across devices, browsers, and performance optimization for peak efficiency.", "points": ["Quality Assurance", "Performance Testing", "Security Audit"]}, {"title": "Launch & Support", "description": "Smooth deployment with monitoring, maintenance, and continuous improvement based on user feedback.", "points": ["Production Deployment", "24/7 Monitoring", "Ongoing Support"]}]}, {"slug": "saas-solutions", "icon": "Cloud", "title": "SAAS Solutions", "short": "End-to-end SaaS products with subscription management, multi-tenancy, and cloud-native infrastructure.", "tagline": "Build, Launch and Scale Your SaaS Product", "description": "We design and engineer complete Software-as-a-Service platforms, from multi-tenant architecture and subscription billing to analytics dashboards, so you can launch faster and scale with confidence.", "image": "/images/saas.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "We build SaaS platforms engineered for growth – secure, scalable, and designed to turn recurring users into lasting revenue.", "whyCards": [{"label": "Scalable", "title": "Multi-Tenant Core", "icon": "Layers", "description": "Isolated, secure environments that scale cleanly across thousands of customers."}, {"label": "Recurring", "title": "Billing Built-In", "icon": "ShieldCheck", "description": "Flexible plans, metered usage, and automated recurring payments out of the box."}, {"label": "Insightful", "title": "Analytics First", "icon": "Database", "description": "Dashboards that surface usage, retention, and revenue in real time."}], "solutionsHeading": "SaaS Solutions for Every Model", "solutionsDescription": "From B2B tools to consumer platforms, we build SaaS products that solve real problems and scale sustainably.", "industries": [{"title": "B2B Platforms", "description": "Enterprise-ready SaaS with team management, permissions, and integrations that fit into existing workflows.", "features": ["Role-Based Access", "SSO & Security", "Usage Analytics", "API Access"]}, {"title": "Vertical SaaS", "description": "Industry-specific platforms tailored to the unique needs of healthcare, fintech, education, and more.", "features": ["Custom Workflows", "Compliance Ready", "White-Label Options", "Third-Party Integrations"]}], "techHeading": "Powered by Cloud-Native Technology", "techDescription": "We use elastic, modern infrastructure so your SaaS scales automatically and stays reliable under any load.", "techCards": [{"title": "Elastic Infrastructure", "icon": "Cloud", "description": "Auto-scaling systems that grow with demand."}, {"title": "Secure Data Layer", "icon": "Database", "description": "Encrypted, isolated tenant data you can trust."}, {"title": "Billing Engine", "icon": "ShieldCheck", "description": "Subscriptions, metering, and invoicing automated."}, {"title": "Observability", "icon": "Cpu", "description": "Full monitoring, logging, and alerting baked in."}], "process": [{"title": "Product Discovery", "description": "We map your market, users, and monetization to define the right MVP.", "points": ["Market Research", "Feature Scoping", "Pricing Strategy"]}, {"title": "Architecture Design", "description": "We design a multi-tenant, scalable foundation from day one.", "points": ["Tenant Model", "Data Design", "Security Plan"]}, {"title": "MVP Development", "description": "We ship a focused, high-quality first version fast.", "points": ["Core Features", "Billing Setup", "Admin Panel"]}, {"title": "Iteration & Scaling", "description": "We refine based on real usage and prepare for growth.", "points": ["User Feedback", "Performance Tuning", "Feature Expansion"]}, {"title": "Ongoing Support", "description": "We keep your platform healthy, secure, and improving.", "points": ["Monitoring", "Maintenance", "Roadmap Support"]}]}, {"slug": "mobile-apps", "icon": "Smartphone", "title": "Mobile Applications", "short": "Native and cross-platform mobile apps with intuitive user experiences.", "tagline": "Powerful Mobile Experiences in Your Pocket", "description": "From native iOS and Android to cross-platform builds, we create high-performance mobile applications with beautiful interfaces and smooth interactions that keep users engaged.", "image": "/images/mobile-apps.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "We craft mobile apps that feel effortless – fast, beautiful, and engineered to keep users coming back.", "whyCards": [{"label": "Native Feel", "title": "Platform Perfection", "icon": "Smartphone", "description": "Apps that fully leverage the power of iOS and Android."}, {"label": "Efficient", "title": "Cross-Platform Speed", "icon": "Layers", "description": "One codebase, both platforms, faster time to market."}, {"label": "Engaging", "title": "Retention Focused", "icon": "Zap", "description": "Smooth flows and notifications designed to bring users back."}], "solutionsHeading": "Mobile Solutions for Every Goal", "solutionsDescription": "Whether consumer-facing or internal, we build mobile experiences that drive adoption and results.", "industries": [{"title": "Consumer Apps", "description": "Delightful, high-retention apps for commerce, social, health, and lifestyle brands.", "features": ["Intuitive Onboarding", "Push Notifications", "In-App Payments", "Offline Mode"]}, {"title": "Enterprise Mobility", "description": "Secure internal apps that empower field teams and streamline operations on the go.", "features": ["Secure Access", "Real-Time Sync", "Data Capture", "System Integrations"]}], "techHeading": "Powered by Modern Mobile Tech", "techDescription": "We use the best of native and cross-platform frameworks to deliver quality without compromise.", "techCards": [{"title": "React Native & Flutter", "icon": "Layers", "description": "Cross-platform builds with native performance."}, {"title": "Native SDKs", "icon": "Smartphone", "description": "Deep platform capabilities when you need them."}, {"title": "Cloud Backends", "icon": "Cloud", "description": "Reliable APIs and real-time data sync."}, {"title": "Analytics", "icon": "Cpu", "description": "Understand behavior and improve retention."}], "process": [{"title": "Concept & Wireframes", "description": "We shape your idea into a clear, testable blueprint.", "points": ["User Flows", "Wireframes", "Feature List"]}, {"title": "UI/UX Design", "description": "We design polished, on-brand mobile interfaces.", "points": ["Visual Design", "Prototypes", "Design System"]}, {"title": "Development", "description": "We build performant apps for iOS and Android.", "points": ["Core Features", "API Integration", "Push Setup"]}, {"title": "Beta Testing", "description": "We test with real users on real devices.", "points": ["QA Testing", "Beta Program", "Bug Fixes"]}, {"title": "Store Launch", "description": "We handle submission and post-launch iteration.", "points": ["App Store Prep", "Compliance", "Ongoing Updates"]}]}, {"slug": "ar-vr-development", "icon": "Headset", "title": "AR/VR Development", "short": "Digital immersion that educates, entertains, and transforms reality with cutting-edge AR/VR experiences.", "tagline": "Immersive Realities That Redefine Engagement", "description": "We craft augmented and virtual reality experiences that blur the line between digital and physical, from training simulations and virtual showrooms to interactive entertainment.", "image": "/images/ar-vr.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "We build immersive experiences that don't just impress – they educate, engage, and drive real outcomes.", "whyCards": [{"label": "Immersive", "title": "True Presence", "icon": "Headset", "description": "Experiences that make users feel genuinely there."}, {"label": "Interactive", "title": "Real-Time 3D", "icon": "Cpu", "description": "High-fidelity, responsive worlds rendered in real time."}, {"label": "Flexible", "title": "Any Device", "icon": "Globe", "description": "Deploy across headsets, mobile, and the web."}], "solutionsHeading": "Immersive Solutions for Every Industry", "solutionsDescription": "From retail to training, we build AR/VR experiences that solve real problems and captivate audiences.", "industries": [{"title": "Training & Simulation", "description": "Safe, repeatable virtual environments for skill-building and high-stakes practice.", "features": ["Realistic Scenarios", "Progress Tracking", "Multi-User Support", "Analytics"]}, {"title": "Retail & Showrooms", "description": "Let customers explore and configure products in stunning interactive 3D.", "features": ["Product Configurators", "Virtual Try-On", "360° Tours", "AR Previews"]}], "techHeading": "Powered by Real-Time Engines", "techDescription": "We use industry-leading tools to build immersive experiences that look incredible and run smoothly.", "techCards": [{"title": "Unity & Unreal", "icon": "Cpu", "description": "Best-in-class engines for immersive quality."}, {"title": "3D Pipeline", "icon": "Layers", "description": "Optimized assets built for real-time rendering."}, {"title": "XR SDKs", "icon": "Headset", "description": "Support for leading headsets and devices."}, {"title": "Cloud Streaming", "icon": "Cloud", "description": "Deliver heavy experiences anywhere."}], "process": [{"title": "Concept & Storyboard", "description": "We define the experience and map the user journey.", "points": ["Concept Design", "Storyboarding", "Tech Scoping"]}, {"title": "3D Asset Creation", "description": "We build optimized models and environments.", "points": ["Modeling", "Texturing", "Optimization"]}, {"title": "Interaction Design", "description": "We design intuitive, immersive interactions.", "points": ["Interaction Model", "UX in 3D", "Prototyping"]}, {"title": "Development", "description": "We build and integrate the full experience.", "points": ["Engine Development", "Integration", "Testing"]}, {"title": "Deployment", "description": "We ship across your target devices and platforms.", "points": ["Device Builds", "QA", "Launch Support"]}]}, {"slug": "game-development", "icon": "Gamepad2", "title": "Game Development", "short": "Where creativity meets code to build living, breathing virtual experiences.", "tagline": "Living, Breathing Virtual Worlds", "description": "From casual mobile games to immersive multiplayer worlds, we combine art, engineering, and storytelling to build games that captivate players and keep them coming back.", "image": "/images/game-dev.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "We build games that players love – polished, performant, and designed for long-term engagement.", "whyCards": [{"label": "Creative", "title": "Art Meets Code", "icon": "Gamepad2", "description": "Beautiful visuals paired with tight, satisfying gameplay."}, {"label": "Connected", "title": "Multiplayer Ready", "icon": "Globe", "description": "Real-time networking, matchmaking, and live services."}, {"label": "Optimized", "title": "Runs Everywhere", "icon": "Zap", "description": "Smooth performance across mobile, PC, and console."}], "solutionsHeading": "Games for Every Platform", "solutionsDescription": "From hyper-casual to hardcore, we build games tailored to your audience and business goals.", "industries": [{"title": "Mobile Games", "description": "Addictive, monetizable mobile titles built for mass reach and retention.", "features": ["Casual & Hyper-Casual", "In-App Purchases", "Ad Integration", "Live Events"]}, {"title": "Multiplayer Worlds", "description": "Immersive online games with real-time networking and social features.", "features": ["Real-Time Sync", "Matchmaking", "Leaderboards", "Live Ops"]}], "techHeading": "Powered by Leading Game Engines", "techDescription": "We build with the industry's best tools to deliver quality, performance, and scale.", "techCards": [{"title": "Unity & Unreal", "icon": "Cpu", "description": "Top engines for stunning, performant games."}, {"title": "Networking", "icon": "Globe", "description": "Reliable multiplayer and live services."}, {"title": "Art Pipeline", "icon": "Layers", "description": "2D & 3D assets crafted for real-time."}, {"title": "Cloud Backend", "icon": "Cloud", "description": "Scalable services for players worldwide."}], "process": [{"title": "Concept & GDD", "description": "We define the vision in a clear game design document.", "points": ["Core Loop", "Art Direction", "Monetization"]}, {"title": "Prototyping", "description": "We prove the fun with playable prototypes.", "points": ["Gameplay Prototype", "Playtesting", "Iteration"]}, {"title": "Art & Production", "description": "We build the full game with art and engineering.", "points": ["Asset Production", "Systems", "Content"]}, {"title": "Playtesting", "description": "We refine balance, feel, and performance.", "points": ["Balancing", "QA", "Optimization"]}, {"title": "Launch & Live Ops", "description": "We ship and keep your community growing.", "points": ["Store Launch", "Live Events", "Updates"]}]}, {"slug": "ui-ux-design", "icon": "Palette", "title": "UI/UX Design", "short": "Human-centered design that balances beauty and usability for products people love to use.", "tagline": "Designs People Love to Use", "description": "Great products start with great design. We craft intuitive, accessible, and beautiful interfaces backed by research, so every interaction feels effortless and every screen tells your story.", "image": "/images/ui-ux.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "We design experiences that are as usable as they are beautiful – grounded in research and built to convert.", "whyCards": [{"label": "Research-Led", "title": "User-Centered", "icon": "Palette", "description": "Every decision backed by real user insight."}, {"label": "Consistent", "title": "Design Systems", "icon": "Layers", "description": "Scalable component libraries for consistency at any size."}, {"label": "Effective", "title": "Conversion Focused", "icon": "Zap", "description": "Designs that remove friction and drive action."}], "solutionsHeading": "Design for Every Product", "solutionsDescription": "From MVPs to mature platforms, we design experiences that delight users and support your goals.", "industries": [{"title": "Product Design", "description": "End-to-end design for web and mobile products, from research to polished UI.", "features": ["User Research", "Wireframes", "Visual Design", "Prototyping"]}, {"title": "Design Systems", "description": "Scalable, documented systems that keep teams fast and products consistent.", "features": ["Component Library", "Design Tokens", "Guidelines", "Handoff Ready"]}], "techHeading": "Powered by a Modern Design Toolkit", "techDescription": "We use the best design and collaboration tools to move from idea to interface seamlessly.", "techCards": [{"title": "Figma", "icon": "Palette", "description": "Collaborative design and prototyping."}, {"title": "Design Systems", "icon": "Layers", "description": "Reusable, scalable component libraries."}, {"title": "User Testing", "icon": "Cpu", "description": "Data-driven validation and refinement."}, {"title": "Dev Handoff", "icon": "Code2", "description": "Clean specs and assets for engineering."}], "process": [{"title": "Research", "description": "We learn your users, market, and goals.", "points": ["User Interviews", "Competitive Audit", "Personas"]}, {"title": "Information Architecture", "description": "We structure content and flows for clarity.", "points": ["User Flows", "Sitemaps", "IA Review"]}, {"title": "Wireframes", "description": "We create low-fidelity, testable blueprints.", "points": ["Layouts", "Flows", "Early Testing"]}, {"title": "Visual Design", "description": "We craft distinctive, on-brand interfaces.", "points": ["UI Design", "Design System", "Assets"]}, {"title": "Handoff & Testing", "description": "We validate and prepare for development.", "points": ["Usability Testing", "Dev Specs", "Iteration"]}]}, {"slug": "iot", "icon": "Wifi", "title": "Internet of Things (IoT)", "short": "Connected device ecosystems with real-time data, automation, and smart integrations.", "tagline": "Connecting the Physical and Digital Worlds", "description": "We build end-to-end IoT ecosystems, connecting sensors, devices, and dashboards with secure, real-time data pipelines that unlock automation and intelligent decision-making.", "image": "/images/iot.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "We build IoT ecosystems that are secure, reliable, and turn real-world data into real business value.", "whyCards": [{"label": "Connected", "title": "Reliable Connectivity", "icon": "Wifi", "description": "Rock-solid communication across devices and the cloud."}, {"label": "Secure", "title": "Hardened Security", "icon": "ShieldCheck", "description": "End-to-end encryption and device-level protection."}, {"label": "Intelligent", "title": "Actionable Data", "icon": "Cpu", "description": "Turn sensor streams into predictive insights."}], "solutionsHeading": "IoT Solutions for Every Sector", "solutionsDescription": "From smart facilities to connected products, we build systems that automate and optimize the physical world.", "industries": [{"title": "Smart Operations", "description": "Monitor and automate facilities, equipment, and logistics in real time.", "features": ["Sensor Networks", "Live Dashboards", "Predictive Maintenance", "Automation Rules"]}, {"title": "Connected Products", "description": "Add intelligence to your hardware with cloud connectivity and companion apps.", "features": ["Device Management", "OTA Updates", "Mobile Control", "Usage Analytics"]}], "techHeading": "Powered by Edge-to-Cloud Technology", "techDescription": "We connect devices, edge compute, and the cloud into secure, real-time data pipelines.", "techCards": [{"title": "Device Layer", "icon": "Wifi", "description": "Sensors and gateways connected reliably."}, {"title": "Edge Compute", "icon": "Cpu", "description": "Fast processing close to the source."}, {"title": "Cloud Platform", "icon": "Cloud", "description": "Scalable ingestion, storage, and control."}, {"title": "Analytics", "icon": "Database", "description": "Insights and automation from live data."}], "process": [{"title": "Requirements", "description": "We define devices, data, and business outcomes.", "points": ["Use-Case Mapping", "Hardware Scoping", "Data Plan"]}, {"title": "Hardware & Protocol", "description": "We select the right devices and communication.", "points": ["Device Selection", "Protocol Design", "Security Model"]}, {"title": "Platform Development", "description": "We build dashboards and the cloud backend.", "points": ["Data Pipeline", "Dashboards", "APIs"]}, {"title": "Integration", "description": "We connect everything into one system.", "points": ["Device Onboarding", "System Integration", "Testing"]}, {"title": "Monitoring", "description": "We keep the fleet healthy and optimized.", "points": ["Live Monitoring", "Alerts", "Maintenance"]}]}, {"slug": "chatbot-development", "icon": "Bot", "title": "AI Autonomous Agents Development", "short": "Autonomous AI agents that reason, plan, and execute tasks across your workflows.", "tagline": "Intelligent Agents That Work For You", "description": "We build autonomous AI agents and chatbots that understand context, reason through problems, and take action, automating support, operations, and complex multi-step workflows.", "image": "/images/ai-agents.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "We build AI agents that don't just chat – they reason, take action, and get real work done for your business.", "whyCards": [{"label": "Context-Aware", "title": "Grounded in Your Data", "icon": "Database", "description": "RAG-powered answers rooted in your knowledge base."}, {"label": "Autonomous", "title": "Takes Action", "icon": "Bot", "description": "Agents that plan and execute multi-step tasks."}, {"label": "Connected", "title": "Tool Use", "icon": "Cpu", "description": "Calls APIs, databases, and services to complete work."}], "solutionsHeading": "AI Agents for Every Workflow", "solutionsDescription": "From customer support to internal operations, we deploy agents that automate the work that slows you down.", "industries": [{"title": "Customer Support", "description": "24/7 conversational agents that resolve issues and escalate seamlessly to humans.", "features": ["Multi-Channel", "Knowledge Base", "Human Handoff", "Analytics"]}, {"title": "Operations Automation", "description": "Agents that handle multi-step internal tasks across your tools and data.", "features": ["Workflow Automation", "Tool Integration", "Task Planning", "Reporting"]}], "techHeading": "Powered by Modern AI Infrastructure", "techDescription": "We combine leading models, retrieval, and tool use to build agents that are accurate and capable.", "techCards": [{"title": "LLMs", "icon": "Cpu", "description": "State-of-the-art language models."}, {"title": "RAG Pipelines", "icon": "Database", "description": "Grounded, accurate responses from your data."}, {"title": "Tool Calling", "icon": "Code2", "description": "Agents that act across your systems."}, {"title": "Multi-Channel", "icon": "Globe", "description": "Deploy on web, chat, and messaging apps."}], "process": [{"title": "Use-Case Mapping", "description": "We identify where agents deliver the most value.", "points": ["Workflow Audit", "Success Metrics", "Scope"]}, {"title": "Knowledge Setup", "description": "We connect and structure your data for retrieval.", "points": ["Data Ingestion", "Indexing", "Grounding"]}, {"title": "Agent Design", "description": "We design reasoning, tools, and guardrails.", "points": ["Prompt Design", "Tool Setup", "Guardrails"]}, {"title": "Integration", "description": "We deploy across your channels and systems.", "points": ["Channel Setup", "API Integration", "Handoff"]}, {"title": "Optimization", "description": "We monitor and continuously improve performance.", "points": ["Monitoring", "Evaluation", "Tuning"]}]}, {"slug": "ai-calling", "icon": "Phone", "title": "AI Calling Agency", "short": "Intelligent call automation systems with natural language processing capabilities.", "tagline": "Human-Like AI Voice at Scale", "description": "Our AI calling agents handle inbound and outbound calls with natural, human-like voices, automating appointment booking, lead qualification, reminders, and support around the clock.", "image": "/images/ai-calling.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "We deploy AI voice agents that sound human, work 24/7, and scale your calling operations without scaling headcount.", "whyCards": [{"label": "Natural", "title": "Human-Like Voice", "icon": "Phone", "description": "Lifelike conversations customers trust and enjoy."}, {"label": "Always On", "title": "24/7 Availability", "icon": "Zap", "description": "Never miss a call, day or night."}, {"label": "Connected", "title": "CRM Integrated", "icon": "Database", "description": "Every call logged and synced automatically."}], "solutionsHeading": "AI Calling for Every Team", "solutionsDescription": "From reception to outreach, we automate your calls so your team can focus on what matters.", "industries": [{"title": "Inbound Reception", "description": "AI answers, routes, and handles calls, booking appointments and resolving queries instantly.", "features": ["Call Routing", "Appointment Booking", "FAQ Handling", "Multilingual"]}, {"title": "Outbound Campaigns", "description": "AI runs follow-ups, reminders, and lead qualification at scale.", "features": ["Lead Qualification", "Reminders", "Follow-Ups", "Call Analytics"]}], "techHeading": "Powered by Advanced Voice AI", "techDescription": "We combine natural voice synthesis, speech recognition, and language understanding for seamless calls.", "techCards": [{"title": "Voice Synthesis", "icon": "Phone", "description": "Natural, lifelike AI voices."}, {"title": "Speech Recognition", "icon": "Cpu", "description": "Accurate, real-time transcription."}, {"title": "NLU", "icon": "Bot", "description": "Understands intent and context."}, {"title": "CRM Sync", "icon": "Database", "description": "Automatic logging and updates."}], "process": [{"title": "Call Flow Design", "description": "We map conversations and outcomes.", "points": ["Script Design", "Intent Mapping", "Routing Rules"]}, {"title": "Voice Training", "description": "We tune voice, tone, and responses.", "points": ["Voice Setup", "Tone Tuning", "Testing"]}, {"title": "Integration", "description": "We connect telephony and your CRM.", "points": ["Telephony Setup", "CRM Integration", "Logging"]}, {"title": "Pilot Campaign", "description": "We validate with a controlled rollout.", "points": ["Pilot Run", "Monitoring", "Refinement"]}, {"title": "Scale & Optimize", "description": "We expand and continuously improve.", "points": ["Scale Up", "Analytics", "Optimization"]}]}, {"slug": "ai-automation", "icon": "Zap", "title": "AI Automation", "short": "Custom AI solutions to automate workflows and enhance business processes.", "tagline": "Automate the Work That Slows You Down", "description": "We identify repetitive, high-cost processes and replace them with intelligent automation, connecting your tools, data, and teams so your business runs faster with fewer errors.", "image": "/images/ai-automation.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "We turn manual, repetitive work into intelligent automation – saving time, cutting errors, and unlocking growth.", "whyCards": [{"label": "Efficient", "title": "Eliminate Busywork", "icon": "Zap", "description": "Automate repetitive tasks across your entire stack."}, {"label": "Connected", "title": "Seamless Integrations", "icon": "Layers", "description": "Connect every app so information flows freely."}, {"label": "Smart", "title": "Predictive Intelligence", "icon": "Cpu", "description": "AI models that forecast and recommend next actions."}], "solutionsHeading": "Automation for Every Process", "solutionsDescription": "From back-office to customer-facing, we automate the workflows that drain your team's time.", "industries": [{"title": "Back-Office Automation", "description": "Automate document processing, data entry, and repetitive operations end to end.", "features": ["Document Processing", "Data Pipelines", "Approvals", "Reporting"]}, {"title": "Revenue Operations", "description": "Automate lead routing, follow-ups, and reporting to accelerate your funnel.", "features": ["Lead Routing", "CRM Automation", "Forecasting", "Alerts"]}], "techHeading": "Powered by AI & Integration Technology", "techDescription": "We combine AI models with robust integrations to automate processes reliably and at scale.", "techCards": [{"title": "AI Models", "icon": "Cpu", "description": "Custom models tuned to your business."}, {"title": "Workflow Engine", "icon": "Zap", "description": "Reliable orchestration of every step."}, {"title": "Integrations", "icon": "Layers", "description": "Connect all your tools and data."}, {"title": "Analytics", "icon": "Database", "description": "Track impact and continuously improve."}], "process": [{"title": "Process Audit", "description": "We find the highest-impact automation opportunities.", "points": ["Workflow Mapping", "ROI Analysis", "Prioritization"]}, {"title": "Automation Design", "description": "We design the automated workflows and models.", "points": ["Solution Design", "Model Plan", "Integration Map"]}, {"title": "Model Development", "description": "We build and train the AI components.", "points": ["Model Training", "Testing", "Validation"]}, {"title": "Deployment", "description": "We roll out automation into your operations.", "points": ["Integration", "Rollout", "Training"]}, {"title": "Continuous Improvement", "description": "We monitor and optimize over time.", "points": ["Monitoring", "Optimization", "Scaling"]}]}, {"slug": "salesforce-solutions", "icon": "Cloud", "title": "Salesforce Solutions", "short": "Empower your enterprise with intelligent CRM capabilities built for scale, from strategy and custom development to Sales, Service, and Marketing Cloud.", "tagline": "Elevate Customer Engagement, Streamline Operations, and Accelerate Performance", "description": "Salesforce is more than a CRM platform. It is a complete ecosystem designed to strengthen customer relationships and drive business growth. We help organizations harness the true potential of Salesforce by designing tailored solutions that simplify processes, unify teams, and enhance customer satisfaction. Our end-to-end expertise ensures businesses can modernize their customer journeys, strengthen internal collaboration, and reach new levels of efficiency across every department.", "image": "/images/salesforce.png", "whyHeading": "Why Choose ACNS AI SOLUTIONS?", "whyDescription": "As a trusted Salesforce partner, we guide enterprises through digital transformation with precision, ensuring seamless adoption, smooth integrations, and long-term value creation tailored to your business model.", "whyCards": [{"label": "Strategic", "title": "Advisory-Led Delivery", "icon": "TrendingUp", "description": "We work closely with leadership to identify challenges, refine CRM goals, and build roadmaps that drive measurable improvements."}, {"label": "Tailored", "title": "Custom Development", "icon": "Code2", "description": "We build applications, integrate third-party systems, and extend modules so Salesforce adapts to your unique business needs."}, {"label": "Unified", "title": "Seamless Adoption", "icon": "Users", "description": "We ensure smooth migrations, clean integrations, and confident team adoption that unlocks lasting value across departments."}], "solutionsHeading": "What We Offer", "solutionsDescription": "From strategy to implementation, our Salesforce services are crafted to fit your business, whether you are expanding sales operations, improving service delivery, or personalizing customer experience at scale.", "industries": [{"title": "Salesforce Strategy & Advisory", "description": "Strategic guidance to help companies realize maximum value from the Salesforce platform, aligning CRM goals with measurable business outcomes.", "features": ["Business Challenge Analysis", "CRM Goal Refinement", "Transformation Roadmaps", "Value Realization"]}, {"title": "Lightning Experience Enablement", "description": "Transition confidently to Salesforce Lightning with a modern, intuitive, and performance-optimized interface that empowers your workforce.", "features": ["Legacy Migration", "Workflow Enhancement", "Faster Experiences", "User Enablement"]}, {"title": "Revenue Lifecycle Automation", "description": "Simplify quotes, contracts, subscriptions, and revenue processes with automation that accelerates approvals and ensures consistent execution.", "features": ["Quote-to-Cash", "Contract Automation", "Subscription Management", "Approval Acceleration"]}, {"title": "Sales, Service & Marketing Cloud", "description": "Strengthen pipelines with Sales Cloud, deliver exceptional support with Service Cloud, and personalize engagement with Marketing Cloud.", "features": ["Lead & Opportunity Tracking", "Case Resolution", "Campaign Orchestration", "Multi-Channel Analytics"]}], "techHeading": "Powered by the Salesforce Ecosystem", "techDescription": "Salesforce offers extensive customization, powerful integrations, a large app ecosystem, strong security, and advanced AI capabilities that help companies remain competitive.", "techCards": [{"title": "Cloud CRM Core", "icon": "Cloud", "description": "A single, scalable system to manage the full customer lifecycle."}, {"title": "Sales & Service", "icon": "Headset", "description": "Faster conversions and precise, streamlined customer support."}, {"title": "Marketing Automation", "icon": "Megaphone", "description": "Personalized, multi-channel engagement at every journey stage."}, {"title": "Enterprise Security", "icon": "ShieldCheck", "description": "Global security standards, encryption, and continuous monitoring."}], "process": [{"title": "Discovery & Strategy", "description": "We assess your CRM goals and map a tailored Salesforce roadmap.", "points": ["Requirements Analysis", "CRM Goal Mapping", "Solution Roadmap"]}, {"title": "Solution Design", "description": "We architect a scalable, secure Salesforce environment for your model.", "points": ["Data Model", "Integration Plan", "Security Design"]}, {"title": "Configuration & Development", "description": "We configure clouds and build custom functionality to fit your needs.", "points": ["Cloud Setup", "Custom Development", "Third-Party Integration"]}, {"title": "Migration & Testing", "description": "We migrate cleanly and validate every workflow before go-live.", "points": ["Data Migration", "Quality Assurance", "User Acceptance"]}, {"title": "Adoption & Support", "description": "We enable your teams and provide long-term optimization.", "points": ["Team Enablement", "Go-Live Support", "Ongoing Optimization"]}]}];
+var SLUG_BY_TITLE = {}; SVC_DATA.forEach(function(s){ SLUG_BY_TITLE[s.title] = s.slug; });
+var ICON_PATHS = {
+  Globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+  Cloud:'<path d="M7 18a5 5 0 1 1 1-9.9A6 6 0 0 1 19.5 10 4 4 0 0 1 18 18z"/>',
+  Smartphone:'<rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/>',
+  Headset:'<path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H5a1 1 0 0 1-1-1zM20 14h-3v6h2a1 1 0 0 0 1-1z"/>',
+  Gamepad2:'<path d="M6 11h4M8 9v4M15 12h.01M18 10h.01"/><path d="M17.3 5H6.7a4 4 0 0 0-4 3.6L2 15a3 3 0 0 0 5.4 2l1.6-2h6l1.6 2a3 3 0 0 0 5.4-2l-.7-6.4A4 4 0 0 0 17.3 5z"/>',
+  Palette:'<path d="M12 22a10 10 0 1 1 10-10c0 2.8-2.2 4-4 4h-2a2 2 0 0 0-1.5 3.3A1.6 1.6 0 0 1 12 22z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="12" cy="7.5" r="1"/><circle cx="16.5" cy="10.5" r="1"/>',
+  Wifi:'<path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a15 15 0 0 1 20 0M12 20h.01"/>',
+  Bot:'<rect x="4" y="8" width="16" height="12" rx="2"/><path d="M12 8V4M8 4h8M9 14h.01M15 14h.01M2 14h2M20 14h2"/>',
+  Phone:'<path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/>',
+  Zap:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+  Code2:'<path d="m18 16 4-4-4-4M6 8l-4 4 4 4M14.5 4l-5 16"/>',
+  Layers:'<path d="M12 3l9 5-9 5-9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/>',
+  Database:'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',
+  Cpu:'<rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>',
+  ShieldCheck:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>',
+  Rocket:'<path d="M5 15c-1.5 1.3-2 5-2 5s3.7-.5 5-2M9 15l-3-3a20 20 0 0 1 9-9c2-1 5-1 6 0 1 1 1 4 0 6a20 20 0 0 1-9 9z"/><circle cx="15" cy="9" r="1.5"/>',
+  Users:'<circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M16 3.5a4 4 0 0 1 0 9M22 21a7 7 0 0 0-4-6.3"/>',
+  TrendingUp:'<path d="m3 17 6-6 4 4 8-8M15 7h6v6"/>',
+  Megaphone:'<path d="M3 11v2a1 1 0 0 0 1 1h3l6 5V5L7 10H4a1 1 0 0 0-1 1zM17 8a5 5 0 0 1 0 8M20 5a9 9 0 0 1 0 14"/>'
+};
+function icon(name){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICON_PATHS[name] || ICON_PATHS.Zap) + '</svg>'; }
+var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg>';
+document.getElementById('svcList').innerHTML = SERVICES.map(function(x, i){
+  return '<a href="#' + (SLUG_BY_TITLE[x[0]] || 'services') + '" data-img="img/' + x[2] + '.webp"><span class="n">' + String(i + 1).padStart(2, '0') + '</span><span class="thumb"><img src="img/' + x[2] + '.webp" alt="" loading="lazy"></span><span class="ttl">' + esc(x[0]) + '</span><span class="ds">' + esc(x[1]) + '</span><span class="lm">Learn More ' + ARROW + '</span></a>';
+}).join('');
+(function(){
+  function nodes(list, on){ var n = list.length; return list.map(function(nm, i){ return '<span class="node" style="--a:' + (360 / n * i) + 'deg"><span class="ni' + (on.indexOf(i) > -1 ? ' on' : '') + '">' + icon(nm) + '</span></span>'; }).join(''); }
+  document.getElementById('ring1').innerHTML = nodes(['Bot','Phone','Zap','Cloud'], [0]);
+  document.getElementById('ring2').innerHTML = nodes(['Globe','Smartphone','Headset','Gamepad2','Palette','Wifi','Code2'], [3]);
+})();
+
+/* ---- unique generated cover for every portfolio project ---- */
+function rnd(n){ var x = Math.sin(n * 9301 + 49297) * 233280; return x - Math.floor(x); }
+function xmlEsc(t){ return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function wrapText(t, max){ var words = t.split(' '), lines = [], cur = ''; words.forEach(function(w){ if ((cur + ' ' + w).trim().length > max && cur) { lines.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); }); if (cur) lines.push(cur); return lines; }
+var KIND_N = {};
+function makeCover(p, i){
+  var hue = Math.round((i * 137.508 + 200) % 360);
+  var bg = 'hsl(' + hue + ',48%,17%)', bg2 = 'hsl(' + hue + ',52%,24%)', a = 'hsl(' + ((hue + 35) % 360) + ',88%,64%)', a2 = 'hsl(' + ((hue + 190) % 360) + ',80%,66%)';
+  var W = 800, H = 450, g = '';
+  var name = p.t.split(/\s[–—-]\s/)[0];
+  var key = (p.t + ' ' + p.tag).toLowerCase();
+  var kind = /trading|fintech|crypto|wallet|exchange/.test(key) ? 'chart' : /chat|soulmate|social/.test(key) ? 'chat' : /health|medi|patient|meds|care/.test(key) ? 'pulse' : /upsc|ed tech|education|mentorship/.test(key) ? 'progress' : /energy|urja/.test(key) ? 'energy' : /coffee|food|tracking/.test(key) ? 'track' : /classified|marketplace|fashion|e-commerce|rental|stream|real estate/.test(key) ? 'tiles' : 'dash';
+  var v = KIND_N[kind] = (KIND_N[kind] === undefined ? 0 : KIND_N[kind] + 1); v = v % 3;
+  /* background + pattern */
+  g += '<rect width="800" height="450" fill="' + bg + '"/>';
+  g += '<rect x="420" y="0" width="380" height="450" fill="' + bg2 + '"/>';
+  var pt = i % 5, o = 'rgba(255,255,255,.07)';
+  if (pt === 0) { for (var x = 0; x < W; x += 40) g += '<path d="M' + x + ' 0V450" stroke="' + o + '"/>'; for (var y = 0; y < H; y += 40) g += '<path d="M0 ' + y + 'H800" stroke="' + o + '"/>'; }
+  if (pt === 1) { for (var r = 60; r < 600; r += 55) g += '<circle cx="760" cy="40" r="' + r + '" fill="none" stroke="' + o + '"/>'; }
+  if (pt === 2) { for (var d = -450; d < W; d += 34) g += '<path d="M' + d + ' 450L' + (d + 450) + ' 0" stroke="' + o + '" stroke-width="2"/>'; }
+  if (pt === 3) { for (var yy = 20; yy < H; yy += 26) for (var xx = 20; xx < W; xx += 26) g += '<circle cx="' + xx + '" cy="' + yy + '" r="1.6" fill="rgba(255,255,255,.12)"/>'; }
+  if (pt === 4) { for (var k = 0; k < 9; k++) g += '<path d="M0 ' + (90 + k * 45) + ' C 200 ' + (40 + k * 45) + ', 500 ' + (150 + k * 45) + ', 800 ' + (70 + k * 45) + '" fill="none" stroke="' + o + '" stroke-width="2"/>'; }
+  /* domain graphic, right side */
+  var X = 470, Y = 120, done = false;
+  var W2 = 'rgba(255,255,255,.14)';
+  if (v === 1 || v === 2) {
+    done = true;
+    if (kind === 'pulse' && v === 1) {
+      g += '<g transform="rotate(-30 ' + (X + 120) + ' 240)"><rect x="' + (X + 40) + '" y="210" width="170" height="64" rx="32" fill="' + W2 + '"/><rect x="' + (X + 40) + '" y="210" width="85" height="64" rx="32" fill="' + a + '"/></g>';
+      g += '<g transform="rotate(25 ' + (X + 210) + ' 300)"><rect x="' + (X + 150) + '" y="285" width="130" height="48" rx="24" fill="' + W2 + '"/><rect x="' + (X + 215) + '" y="285" width="65" height="48" rx="24" fill="' + a2 + '"/></g>';
+      g += '<circle cx="' + (X + 240) + '" cy="150" r="34" fill="' + a2 + '"/><path d="M' + (X + 240) + ' 132V168M' + (X + 222) + ' 150H' + (X + 258) + '" stroke="' + bg + '" stroke-width="8" stroke-linecap="round"/>';
+    } else if (kind === 'pulse') {
+      g += '<rect x="' + (X + 60) + '" y="' + (Y - 10) + '" width="180" height="290" rx="26" fill="' + W2 + '"/>';
+      g += '<path d="M' + (X + 150) + ' ' + (Y + 95) + ' c -30 -30 -70 -5 -50 25 l 50 45 l 50 -45 c 20 -30 -20 -55 -50 -25 z" fill="' + a + '"/>';
+      for (var vr = 0; vr < 3; vr++) g += '<rect x="' + (X + 85) + '" y="' + (Y + 175 + vr * 28) + '" width="' + (60 + rnd(i + vr) * 70) + '" height="12" rx="6" fill="' + (vr === 1 ? a2 : 'rgba(255,255,255,.35)') + '"/>';
+    } else if (kind === 'chart' && v === 1) {
+      var pts = [], ar = '';
+      for (var q = 0; q <= 8; q++) pts.push((X + q * 36) + ',' + (320 - q * 18 - rnd(i * 3 + q) * 60));
+      g += '<path d="M' + X + ',340 L' + pts.join(' L') + ' L' + (X + 288) + ',340 Z" fill="' + a + '" opacity=".25"/><path d="M' + pts.join(' L') + '" fill="none" stroke="' + a + '" stroke-width="5" stroke-linejoin="round"/>';
+      g += '<circle cx="' + (X + 230) + '" cy="150" r="40" fill="' + a2 + '"/><text x="' + (X + 230) + '" y="165" text-anchor="middle" font-family="Helvetica, Arial" font-size="40" font-weight="800" fill="' + bg + '">₿</text>';
+    } else if (kind === 'chart') {
+      g += '<rect x="' + (X + 10) + '" y="' + (Y + 40) + '" width="280" height="170" rx="22" fill="' + a + '"/><rect x="' + (X + 34) + '" y="' + (Y + 70) + '" width="44" height="34" rx="6" fill="rgba(255,255,255,.6)"/>';
+      for (var dg = 0; dg < 4; dg++) g += '<rect x="' + (X + 34 + dg * 62) + '" y="' + (Y + 140) + '" width="48" height="12" rx="6" fill="' + bg + '" opacity=".55"/>';
+      g += '<rect x="' + (X + 40) + '" y="' + (Y + 230) + '" width="240" height="40" rx="20" fill="' + W2 + '"/><rect x="' + (X + 40) + '" y="' + (Y + 230) + '" width="140" height="40" rx="20" fill="' + a2 + '"/>';
+    } else if (kind === 'chat') {
+      g += '<rect x="' + (X + 20) + '" y="' + (Y + 30) + '" width="260" height="150" rx="30" fill="' + a + '"/><path d="M' + (X + 70) + ' ' + (Y + 175) + ' l -10 45 l 50 -45 z" fill="' + a + '"/>';
+      g += '<rect x="' + (X + 95) + '" y="' + (Y + 70) + '" width="110" height="70" rx="18" fill="' + bg + '"/><circle cx="' + (X + 128) + '" cy="' + (Y + 105) + '" r="9" fill="' + a2 + '"/><circle cx="' + (X + 172) + '" cy="' + (Y + 105) + '" r="9" fill="' + a2 + '"/><path d="M' + (X + 150) + ' ' + (Y + 70) + 'V' + (Y + 48) + '" stroke="' + bg + '" stroke-width="6"/><circle cx="' + (X + 150) + '" cy="' + (Y + 44) + '" r="8" fill="' + bg + '"/>';
+    } else if (kind === 'dash' && v === 1) {
+      g += '<rect x="' + X + '" y="' + Y + '" width="290" height="240" rx="16" fill="' + W2 + '"/><rect x="' + X + '" y="' + Y + '" width="290" height="44" rx="16" fill="' + a + '"/>';
+      for (var cd = 0; cd < 15; cd++) { var cx3 = X + 18 + (cd % 5) * 54, cy3 = Y + 64 + Math.floor(cd / 5) * 56; g += '<rect x="' + cx3 + '" y="' + cy3 + '" width="40" height="40" rx="9" fill="' + (cd === 7 ? a2 : 'rgba(255,255,255,.12)') + '"/>'; }
+    } else if (kind === 'dash') {
+      for (var av = 0; av < 4; av++) g += '<circle cx="' + (X + 40 + av * 50) + '" cy="' + (Y + 30) + '" r="26" fill="' + (av % 2 ? a2 : a) + '" stroke="' + bg2 + '" stroke-width="5"/>';
+      for (var br = 0; br < 5; br++) { var bh = 40 + rnd(i * 11 + br) * 130; g += '<rect x="' + (X + 10 + br * 56) + '" y="' + (Y + 260 - bh) + '" width="38" height="' + bh + '" rx="8" fill="' + (br === 3 ? a : 'rgba(255,255,255,.18)') + '"/>'; }
+    } else if (kind === 'tiles' && v === 1) {
+      g += '<rect x="' + X + '" y="' + Y + '" width="290" height="140" rx="16" fill="' + a + '"/><circle cx="' + (X + 145) + '" cy="' + (Y + 70) + '" r="26" fill="' + bg + '"/><path d="M' + (X + 137) + ' ' + (Y + 56) + ' l 22 14 l -22 14 z" fill="' + a + '"/>';
+      for (var lr = 0; lr < 3; lr++) g += '<rect x="' + X + '" y="' + (Y + 160 + lr * 36) + '" width="46" height="26" rx="6" fill="' + a2 + '"/><rect x="' + (X + 58) + '" y="' + (Y + 168 + lr * 36) + '" width="' + (120 + rnd(i + lr) * 100) + '" height="10" rx="5" fill="rgba(255,255,255,.3)"/>';
+    } else if (kind === 'tiles') {
+      g += '<path d="M' + (X + 150) + ' ' + (Y + 250) + ' c -70 -80 -90 -110 -90 -150 a 90 90 0 0 1 180 0 c 0 40 -20 70 -90 150 z" fill="' + a + '"/><circle cx="' + (X + 150) + '" cy="' + (Y + 100) + '" r="34" fill="' + bg + '"/>';
+      g += '<rect x="' + (X + 20) + '" y="' + (Y + 265) + '" width="260" height="14" rx="7" fill="rgba(255,255,255,.18)"/><rect x="' + (X + 20) + '" y="' + (Y + 265) + '" width="120" height="14" rx="7" fill="' + a2 + '"/>';
+    } else done = false;
+  }
+  if (!done) {
+  if (kind === 'chart') {
+    for (var c = 0; c < 9; c++) { var mid = 300 - c * 16 + (rnd(i * 31 + c) - .5) * 70, hh = 30 + rnd(i * 17 + c) * 60, up = rnd(i * 7 + c) > .35, cx2 = X + c * 32;
+      g += '<path d="M' + (cx2 + 9) + ' ' + (mid - hh / 2 - 18) + 'V' + (mid + hh / 2 + 18) + '" stroke="rgba(255,255,255,.5)" stroke-width="2"/><rect x="' + cx2 + '" y="' + (mid - hh / 2) + '" width="18" height="' + hh + '" rx="3" fill="' + (up ? a : a2) + '"/>'; }
+  } else if (kind === 'pulse') {
+    g += '<path d="M' + X + ' 250 H' + (X + 70) + ' L' + (X + 95) + ' 170 L' + (X + 125) + ' 330 L' + (X + 150) + ' 210 L' + (X + 170) + ' 250 H' + (X + 290) + '" fill="none" stroke="' + a + '" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>';
+    g += '<circle cx="' + (X + 230) + '" cy="150" r="38" fill="' + a2 + '"/><path d="M' + (X + 230) + ' 130V170M' + (X + 210) + ' 150H' + (X + 250) + '" stroke="' + bg + '" stroke-width="9" stroke-linecap="round"/>';
+  } else if (kind === 'progress') {
+    for (var b2 = 0; b2 < 4; b2++) { var wv = 120 + rnd(i * 13 + b2) * 140, yy2 = Y + 20 + b2 * 62;
+      g += '<rect x="' + X + '" y="' + yy2 + '" width="280" height="22" rx="11" fill="rgba(255,255,255,.12)"/><rect x="' + X + '" y="' + yy2 + '" width="' + wv + '" height="22" rx="11" fill="' + (b2 % 2 ? a2 : a) + '"/>'; }
+  } else if (kind === 'chat') {
+    g += '<rect x="' + X + '" y="' + (Y + 10) + '" width="200" height="56" rx="22" fill="rgba(255,255,255,.16)"/><rect x="' + (X + 90) + '" y="' + (Y + 90) + '' + '" width="200" height="56" rx="22" fill="' + a + '"/><rect x="' + X + '" y="' + (Y + 170) + '" width="150" height="56" rx="22" fill="rgba(255,255,255,.16)"/>';
+    for (var dd = 0; dd < 3; dd++) g += '<circle cx="' + (X + 30 + dd * 20) + '" cy="' + (Y + 198) + '" r="5" fill="' + a2 + '"/>';
+  } else if (kind === 'energy') {
+    g += '<path d="M' + (X + 160) + ' ' + (Y + 10) + ' L' + (X + 90) + ' ' + (Y + 150) + ' H' + (X + 150) + ' L' + (X + 120) + ' ' + (Y + 270) + ' L' + (X + 220) + ' ' + (Y + 110) + ' H' + (X + 160) + ' Z" fill="' + a + '"/>';
+    g += '<path d="M' + (X + 10) + ' ' + (Y + 270) + ' A 140 140 0 0 1 ' + (X + 290) + ' ' + (Y + 270) + '" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="14" stroke-linecap="round"/><path d="M' + (X + 10) + ' ' + (Y + 270) + ' A 140 140 0 0 1 ' + (X + 200) + ' ' + (Y + 140) + '" fill="none" stroke="' + a2 + '" stroke-width="14" stroke-linecap="round"/>';
+  } else if (kind === 'track') {
+    g += '<path d="M' + (X + 20) + ' 240 H' + (X + 280) + '" stroke="rgba(255,255,255,.2)" stroke-width="6"/><path d="M' + (X + 20) + ' 240 H' + (X + 190) + '" stroke="' + a + '" stroke-width="6"/>';
+    for (var st = 0; st < 4; st++) g += '<circle cx="' + (X + 20 + st * 87) + '" cy="240" r="20" fill="' + (st < 3 ? a : bg2) + '" stroke="' + a + '" stroke-width="4"/>';
+    g += '<rect x="' + (X + 150) + '" y="140" width="110" height="58" rx="14" fill="' + a2 + '"/>';
+  } else if (kind === 'tiles') {
+    for (var t2 = 0; t2 < 6; t2++) { var tx = X + (t2 % 3) * 98, ty = Y + Math.floor(t2 / 3) * 132;
+      g += '<rect x="' + tx + '" y="' + ty + '" width="84" height="118" rx="12" fill="rgba(255,255,255,.12)"/><rect x="' + (tx + 8) + '" y="' + (ty + 8) + '" width="68" height="62" rx="8" fill="' + (t2 % 2 ? a2 : a) + '" opacity="' + (.55 + rnd(i + t2) * .45) + '"/><rect x="' + (tx + 8) + '" y="' + (ty + 82) + '" width="44" height="8" rx="4" fill="rgba(255,255,255,.4)"/><rect x="' + (tx + 8) + '" y="' + (ty + 98) + '" width="28" height="8" rx="4" fill="' + a + '"/>'; }
+  } else {
+    g += '<rect x="' + X + '" y="' + Y + '" width="290" height="30" rx="8" fill="rgba(255,255,255,.12)"/>';
+    for (var col = 0; col < 3; col++) for (var row = 0; row < 3; row++) { if (rnd(i * 5 + col * 3 + row) < .25 && row > 0) continue;
+      g += '<rect x="' + (X + col * 100) + '" y="' + (Y + 46 + row * 70) + '" width="88" height="58" rx="10" fill="' + (row === 0 ? (col === 1 ? a : 'rgba(255,255,255,.14)') : (col === 2 && row === 1 ? a2 : 'rgba(255,255,255,.14)')) + '"/>'; }
+  }
+  }
+  /* title + tag */
+  var lines = wrapText(name, 16).slice(0, 4), fs = lines.length > 3 ? 40 : 48;
+  lines.forEach(function(l, li){ g += '<text x="48" y="' + (110 + li * (fs + 6)) + '" font-family="Helvetica, Arial, sans-serif" font-size="' + fs + '" font-weight="800" fill="#fff" letter-spacing="-1">' + xmlEsc(l) + '</text>'; });
+  var tagW = Math.min(360, 26 + p.tag.length * 9.2);
+  g += '<rect x="48" y="372" width="' + tagW + '" height="38" rx="19" fill="' + a + '"/><text x="' + (48 + 16) + '" y="397" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" fill="' + bg + '">' + xmlEsc(p.tag) + '</text>';
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">' + g + '</svg>');
+}
+
+var PRODUCTS = [{"slug": "nexus-aiot", "name": "Nexus AIoT", "icon": "Wifi", "tag": "AI · IoT Ecosystem", "short": "An enterprise AIoT command centre that connects every sensor, camera and technician across your sites — predictive AI, Video AI on CCTV and instant WhatsApp alerts, for 10 industries.", "tagline": "One AI command centre for every sensor, camera and technician — from a single fire panel to hundreds of sites, even when the internet goes down.", "overview": "Nexus AIoT brings your devices, cameras and people onto one live platform. It watches every sensor and camera across all your sites, predicts failures before they happen, detects fire, smoke and intrusion on your existing CCTV, and alerts the right person on WhatsApp in seconds — escalating automatically if nobody responds. Work orders, QR inspections and audit-ready reports keep every site compliant, and edge gateways keep alarms working even without internet.", "url": "http://15.252.44.255", "mock": "<div class=\"mock\" aria-hidden=\"true\">\n            <div class=\"mbar\"><span class=\"dots\"><i><\/i><i><\/i><i><\/i><\/span><b>Nexus AIoT · Command Centre<\/b><span class=\"live\">LIVE<\/span><\/div>\n            <div class=\"mgrid\">\n              <div class=\"mpanel\"><h5>Zones<\/h5><div class=\"zones\"><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"w\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"a\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"w\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"w\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><span class=\"\"><\/span><\/div><\/div>\n              <div class=\"mpanel\"><h5>Live alerts<\/h5>\n                <div class=\"alerts\"><div><i style=\"background:#F85149\"><\/i>Smoke detected · Zone B<\/div><div><i style=\"background:#D29922\"><\/i>Pump vibration high<\/div><div><i style=\"background:#3FB950\"><\/i>Inspection completed<\/div><\/div>\n              <\/div>\n              <div class=\"mpanel\" style=\"grid-column:1/-1\"><h5>Asset health<\/h5>\n                <svg class=\"mline\" viewBox=\"0 0 400 70\" preserveAspectRatio=\"none\"><path d=\"M0 50 C40 46 60 30 100 34 S170 52 210 40 290 14 330 22 380 30 400 18 V70 H0Z\" fill=\"rgba(88,166,255,.12)\"/><path class=\"l\" d=\"M0 50 C40 46 60 30 100 34 S170 52 210 40 290 14 330 22 380 30 400 18\" stroke=\"#58A6FF\"/><\/svg>\n              <\/div>\n            <\/div>\n          <\/div>", "stages": [{"t": "Connect", "sub": "Devices & cameras", "items": ["IoT sensors on ESP32 boards", "MQTT & HTTP data ingestion", "Your existing CCTV cameras", "Fire panels, pumps, meters & machines"]}, {"t": "Edge", "sub": "Runs even offline", "items": ["Edge gateways on Raspberry Pi or Windows PC", "Local alarms when the internet drops", "Store-and-forward data buffering", "On-premise Docker install"]}, {"t": "Core", "sub": "Nexus platform", "items": ["Real-time data across all sites", "Multi-client with isolated data", "Digital floor plans & site builder", "12-month history", "Roles: Admin, Manager, Technician"]}, {"t": "Intelligence", "sub": "AI layer", "items": ["Predictive health score for every asset", "Video AI: fire, smoke, PPE, intrusion, tamper", "AI Copilot in Hindi & English", "AI agents that act — with your approval"]}, {"t": "Action", "sub": "Right person, right now", "items": ["WhatsApp, SMS, voice & Telegram alerts", "Auto-escalation if nobody responds", "Work orders & QR inspections", "Audit-ready PDF reports", "Webhooks: SAP PM, Maximo, Slack, Teams"]}], "chipsLabel": "Industries on one platform", "chips": ["Fire & Life Safety", "Manufacturing", "Healthcare", "Logistics", "Smart Cities", "Energy", "Agriculture", "Retail", "Smart Home", "Banking"], "modules": [["Layers", "Live Command Centre", "Every site, zone and device on one live screen, with digital floor plans, status colours and a TV/kiosk mode for control rooms."], ["TrendingUp", "Predictive Maintenance", "A health score for every asset. Nexus spots unusual vibration, temperature or pressure early, so you fix it before it fails."], ["Eye", "Video AI on Your CCTV", "Turns existing cameras into detectors for fire, smoke, intrusion, PPE violations, crowding and camera tampering."], ["Bot", "AI Copilot", "Ask in Hindi or English — “Which zone is most critical right now?” — and get answers from your live data."], ["Zap", "AI Agents with Approval", "AI prepares the next step, like raising a work order or alerting a team, and waits for a person to approve it."], ["Bell", "Alerts & Escalation", "WhatsApp, SMS, voice call and Telegram alerts. If nobody responds, Nexus escalates to the next person automatically."], ["Clipboard", "Work Orders & Compliance", "A work-order board, QR-code inspections and audit-ready PDF reports for fire safety and other compliance."], ["Users", "Multi-client & Roles", "Run many clients from one platform with fully isolated data, a site builder wizard and Admin, Manager and Technician roles."], ["Wifi", "Device Connectivity", "Connect real devices over MQTT or HTTP, with ready ESP32 firmware for sensors and controllers."], ["Server", "Edge Gateways", "Gateways on a Raspberry Pi or Windows PC keep local alarms running and buffer data when the internet goes down."], ["ShieldCheck", "On-premise Install", "Install the full platform inside the client's own network with Docker, for sites that cannot use the cloud."], ["Code2", "Integrations & Industry Builder", "Webhooks to SAP PM, IBM Maximo, Slack and Microsoft Teams, plus an industry builder to add new sectors."]], "audience": ["System integrators & fire-safety contractors", "AMC and facility-management companies", "Factories & industrial plants", "Hospitals, banks & commercial buildings", "Smart city, campus & township operators"], "deploy": [["Cloud", "Hosted by us and reachable from any browser — the fastest way to start."], ["On-premise", "Runs inside your own network with Docker, so data never leaves your site."], ["Edge", "Gateways at each site keep alarms working offline and sync when the internet returns."]], "hero": "img/products/nexus-hero.webp", "gallery": [["img/products/nexus-agents.webp", "AI agent proposes an action — a person approves before it runs"], ["img/products/nexus-video-ai.webp", "Video AI on existing CCTV cameras"], ["img/products/nexus-escalation.webp", "Escalation ladder: who gets alerted, and when"], ["img/products/nexus-work-orders.webp", "Work-order board for the maintenance team"], ["img/products/nexus-technician.webp", "Technician app: jobs on the phone"], ["img/products/nexus-inspection.webp", "QR inspections with live sensor checks"], ["img/products/nexus-edge.webp", "Edge gateway running on a Raspberry Pi"], ["img/products/nexus-builder.webp", "Industry builder for new sector packs"], ["img/products/nexus-report.webp", "Auto-drafted incident report"]]}, {"slug": "chanakya-360", "name": "Chanakya-360", "icon": "Target", "tag": "Election Ecosystem", "short": "An end-to-end election campaign operations platform — field surveys, past results, booth analytics, a War Room dashboard and AI insights in plain language.", "tagline": "From the booth to the war room — one system that turns ground surveys, past election results and social media into a booth-by-booth winning plan.", "overview": "Chanakya-360 is a complete campaign operations platform. Field teams capture surveys booth by booth, official past results are read and verified automatically, and a real election analytics engine — not just a chatbot — works out swing, vote transfer and which booths can flip. The War Room dashboard puts priorities, maps, trends and alerts in one place, and AI explains every insight in simple language so the whole team can act on it.", "url": "https://main.dqgjg3xb18a74.amplifyapp.com", "mock": "<div class=\"mock\" aria-hidden=\"true\">\n            <div class=\"mbar\"><span class=\"dots\"><i><\/i><i><\/i><i><\/i><\/span><b>Chanakya-360 · War Room<\/b><span class=\"live\">LIVE<\/span><\/div>\n            <div class=\"mgrid\">\n              <div class=\"mpanel\"><h5>Booth heatmap<\/h5><div class=\"heat\" data-heat><\/div><\/div>\n              <div class=\"mpanel\"><h5>Public mood<\/h5>\n                <div class=\"gauge\"><svg viewBox=\"0 0 70 40\"><path d=\"M5 36 A30 30 0 0 1 65 36\" fill=\"none\" stroke=\"rgba(255,255,255,.12)\" stroke-width=\"7\" stroke-linecap=\"round\"/><path d=\"M5 36 A30 30 0 0 1 52 12\" fill=\"none\" stroke=\"#3FB950\" stroke-width=\"7\" stroke-linecap=\"round\"/><\/svg><span style=\"font-size:11px;color:#8B949E\">Survey + social<br>sentiment<\/span><\/div>\n                <div class=\"alerts\"><div><i style=\"background:#D29922\"><\/i>Local issue reported<\/div><div><i style=\"background:#58A6FF\"><\/i>Meeting scheduled<\/div><\/div>\n              <\/div>\n              <div class=\"mpanel\" style=\"grid-column:1/-1\"><h5>Vote share trend · past elections<\/h5>\n                <div class=\"bars\"><div class=\"grp\"><i style=\"height:62%;background:#58A6FF;transition-delay:0.00s\"><\/i><i style=\"height:48%;background:#F78166;transition-delay:0.05s\"><\/i><i style=\"height:20%;background:#8B949E;transition-delay:0.10s\"><\/i><\/div><div class=\"grp\"><i style=\"height:55%;background:#58A6FF;transition-delay:0.15s\"><\/i><i style=\"height:58%;background:#F78166;transition-delay:0.20s\"><\/i><i style=\"height:24%;background:#8B949E;transition-delay:0.25s\"><\/i><\/div><div class=\"grp\"><i style=\"height:70%;background:#58A6FF;transition-delay:0.30s\"><\/i><i style=\"height:44%;background:#F78166;transition-delay:0.35s\"><\/i><i style=\"height:18%;background:#8B949E;transition-delay:0.40s\"><\/i><\/div><div class=\"grp\"><i style=\"height:64%;background:#58A6FF;transition-delay:0.45s\"><\/i><i style=\"height:52%;background:#F78166;transition-delay:0.50s\"><\/i><i style=\"height:22%;background:#8B949E;transition-delay:0.55s\"><\/i><\/div><\/div>\n              <\/div>\n            <\/div>\n          <\/div>", "stages": [{"t": "Collect", "sub": "Ground + digital data", "items": ["Field team survey app", "Past results from Form 20, read by AI OCR", "Social media: Instagram, X, Facebook", "Local issues reported by the ground team", "Meetings & rallies log"]}, {"t": "Engine", "sub": "Election analytics", "items": ["Booth history matched across elections", "Booth typology clustering", "Swing: state wave vs local effect", "Vote-transfer modelling", "Flip probability with confidence range"]}, {"t": "War Room", "sub": "Command dashboard", "items": ["Live dashboard & booth priority list", "Booth map on Google Maps", "Survey trends vs past results", "Scenario simulator: “what if”", "Programme & meeting planner"]}, {"t": "AI Insights", "sub": "Answers you can trust", "items": ["Ask AI in plain language", "Every number checked against the engine", "Early-warning alerts on set parameters", "Simple reports for quick decisions"]}, {"t": "Outcome", "sub": "Win-ready decisions", "items": ["Telegram alerts to the core team", "Candidate profiling & narrative", "Insights for the social media team", "Ground teams focused on the right booths"]}], "chipsLabel": "Data sources", "chips": ["Vidhan Sabha results", "Lok Sabha results", "Field surveys", "Social media", "Ground reports", "Meeting updates"], "modules": [["Clipboard", "Field Survey App", "Mobile-friendly survey capture for ground teams, booth by booth, flowing straight into the analytics engine."], ["Database", "Past Election Results", "Upload official Form 20 results. AI OCR reads them, and every figure is cross-checked against official totals."], ["MapPin", "Booth Matching Across Years", "Booth numbers change every election. Chanakya matches booths by name, building and sequence, so history lines up correctly."], ["Cpu", "Election Analytics Engine", "Booth typology clustering, state wave vs local swing, vote-transfer modelling and anomaly detection."], ["Target", "Flip Probability", "Which booths can flip, and how sure the estimate is — shown with a confidence range, not just one number."], ["TrendingUp", "Scenario Simulator", "Ask “what if turnout rises?” or “what if a rebel candidate stands?” and see the booth-level impact."], ["Layers", "War Room Dashboard", "One command screen for the core team: priorities, trends, alerts and progress at a glance."], ["MapPin", "Booth Map", "Every booth on Google Maps, coloured by priority and mood, with GPS pins from booth workers."], ["Megaphone", "Social Media Tracking", "Follow what is trending on Instagram, X and Facebook, and share survey insights with the social media team."], ["Calendar", "Local Issues & Meetings", "The ground team logs local issues; plan and track rallies, public meetings and internal team meetings."], ["Bot", "Ask AI", "Ask questions in plain language. The AI only explains numbers the engine has calculated, and unverified figures are rejected."], ["Bell", "Telegram Alerts", "Early warnings on the parameters you set, sent to the core team on Telegram — automatic, with human review where it matters."]], "audience": ["Candidates and their core campaign team", "Political consultants & campaign agencies", "Party war rooms", "Field & survey teams", "Social media teams"], "deploy": [["Secure cloud", "Runs on AWS with separate logins and roles for each team."], ["Mobile-first", "Works on phones and tablets, so field teams can use it on the ground."], ["Low running cost", "Built to stay economical to run through the whole campaign."]], "hero": "img/products/chanakya-hero.webp", "gallery": [["img/products/chanakya-engine.webp", "Election engine: booth types found from past data"], ["img/products/chanakya-report.webp", "Past elections report, explained in plain language"], ["img/products/chanakya-3d.webp", "3D booth map: margin in every booth"], ["img/products/chanakya-field-app.webp", "Field survey app for booth workers"]]}];
+var EXT_ICON = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+Object.assign(ICON_PATHS, {
+  Eye:'<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  Bell:'<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"/>',
+  Clipboard:'<rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3h6v1M9 10h6M9 14h6M9 18h3"/>',
+  Server:'<rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/>',
+  MapPin:'<path d="M12 22s7-7.2 7-12a7 7 0 0 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/>',
+  Target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+  Calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'
+});
+function findProd(id){ for (var i = 0; i < PRODUCTS.length; i++) if (PRODUCTS[i].slug === id) return PRODUCTS[i]; return null; }
+var HEAT_TIMERS = [];
+function initHeat(scope){
+  var cols = ['rgba(88,166,255,.85)','rgba(88,166,255,.45)','rgba(247,129,102,.8)','rgba(247,129,102,.4)','rgba(139,148,158,.35)'];
+  scope.querySelectorAll('[data-heat]').forEach(function(heat){
+    var cells = [];
+    for (var i = 0; i < 48; i++) { var c = document.createElement('span'); c.style.background = cols[Math.floor(Math.random() * cols.length)]; heat.appendChild(c); cells.push(c); }
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) HEAT_TIMERS.push(setInterval(function(){ for (var k = 0; k < 5; k++) cells[Math.floor(Math.random() * cells.length)].style.background = cols[Math.floor(Math.random() * cols.length)]; }, 900));
+  });
+  scope.querySelectorAll('.eco-flow').forEach(function(f){
+    var st = f.querySelectorAll('.stage'), k = 0; if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    HEAT_TIMERS.push(setInterval(function(){ st.forEach(function(x, j){ x.classList.toggle('on', j === k); }); k = (k + 1) % st.length; }, 1300));
+  });
+}
+function clearHeat(){ HEAT_TIMERS.forEach(clearInterval); HEAT_TIMERS = []; }
+document.getElementById('prodList').innerHTML = PRODUCTS.map(function(p, i){
+  return '<a href="#' + p.slug + '"><span class="n">' + String(i + 1).padStart(2, '0') + '</span><span class="ttl">' + esc(p.name) + '</span><span class="ds"><span class="ptag-sm">' + esc(p.tag) + '</span>' + esc(p.short) + '</span><span class="lm">Learn More ' + ARROW + '</span></a>';
+}).join('');
+
+/* lightbox for product screenshots */
+(function(){
+  var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg');
+  document.addEventListener('click', function(e){
+    var z = e.target.closest ? e.target.closest('[data-zoom]') : null;
+    if (z) { lbImg.src = z.getAttribute('data-zoom'); lbImg.alt = z.getAttribute('aria-label') || ''; lb.hidden = false; return; }
+    if (!lb.hidden && (e.target === lb || e.target.closest('.lb-x'))) lb.hidden = true;
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') lb.hidden = true; });
+  window.addEventListener('hashchange', function(){ lb.hidden = true; });
+})();
+document.getElementById('faqs').innerHTML = FAQS.map(function(f, i){
+  return '<div class="faq"><button type="button" aria-expanded="false" aria-controls="fa' + i + '"><span>' + esc(f[0]) + '</span><span class="pm" aria-hidden="true">+</span></button><div class="ans" id="fa' + i + '"><div><p>' + esc(f[1]) + '</p></div></div></div>';
+}).join('');
+(function(){
+  var phys = document.getElementById('phys');
+  SERVICES.forEach(function(x, i){ var s = document.createElement('span'); s.className = 'tag' + (i % 3 === 1 ? ' alt' : ''); s.textContent = x[0]; phys.appendChild(s); });
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+<script>
+(function(){
+  var root = document.documentElement;
+  var pre = document.querySelector('.pre');
+  var hasG = typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(pointer: fine)').matches;
+  var anim = hasG && !reduce;
+  var physStarted = false, engine, runner, rafId;
+  var lenis = null;
+
+  /* ---------- theme: Warm (light) / Dark ---------- */
+  function setTheme(t){
+    root.setAttribute('data-theme', t);
+    try { localStorage.setItem('acns-theme', t); } catch(e){}
+    var after = function(){ if (hasG) ScrollTrigger.refresh(); if (physStarted) { destroyPhysics(); initPhysics(); } };
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ setTimeout(after, 80); }); else setTimeout(after, 300);
+  }
+  document.querySelectorAll('.theme-tg').forEach(function(b){ b.addEventListener('click', function(){ setTheme(root.getAttribute('data-theme') === 'dark' ? 'warm' : 'dark'); }); });
+
+  /* ---------- header ---------- */
+  var header = document.querySelector('header.top'); var lastY = 0;
+  window.addEventListener('scroll', function(){
+    var y = window.scrollY;
+    header.classList.toggle('filled', y > 40);
+    if (y > lastY + 4 && y > 240 && !mnav.classList.contains('open')) header.classList.add('hide'); else if (y < lastY - 4) header.classList.remove('hide');
+    lastY = y;
+  }, { passive: true });
+  var mbtn = document.querySelector('.menu-btn'), mnav = document.getElementById('mnav');
+  mbtn.addEventListener('click', function(){ var o = mnav.classList.toggle('open'); mbtn.setAttribute('aria-expanded', o ? 'true' : 'false'); mbtn.textContent = o ? 'Close' : 'Menu'; });
+  mnav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mnav.classList.remove('open'); mbtn.setAttribute('aria-expanded', 'false'); mbtn.textContent = 'Menu'; }); });
+
+  /* ---------- FAQ ---------- */
+  document.querySelectorAll('.faq button').forEach(function(b){
+    b.addEventListener('click', function(){ var f = b.parentNode; var o = f.classList.toggle('open'); b.setAttribute('aria-expanded', o ? 'true' : 'false'); if (hasG) setTimeout(function(){ ScrollTrigger.refresh(); }, 520); });
+  });
+
+  /* ---------- form (preview: no backend) ---------- */
+  document.getElementById('cform').addEventListener('submit', function(e){
+    e.preventDefault();
+    var note = document.getElementById('formNote');
+    if (!this.checkValidity()) { note.textContent = 'Please fill in all required fields.'; return; }
+    note.textContent = 'Preview only: this form is not connected yet, so nothing was sent. Please email connect@acnsaisolutions.com or WhatsApp +91 9667779076.';
+  });
+
+  /* ---------- portfolio ---------- */
+  var tabs = document.getElementById('tabs'), grid = document.getElementById('grid');
+  var active = 'web';
+  tabs.innerHTML = DATA.cats.map(function(c){ return '<button type="button" role="tab" data-cat="' + c.id + '" aria-selected="' + (c.id === active) + '">' + esc(c.label) + '</button>'; }).join('');
+  function renderGrid(){
+    var cat = DATA.cats.filter(function(c){ return c.id === active; })[0];
+    var list = DATA.projects.filter(function(p){ return p.c === active; });
+    document.getElementById('catLabel').textContent = cat.label;
+    document.getElementById('catCount').textContent = list.length + ' featured projects';
+    grid.innerHTML = list.length ? list.map(function(p){
+      return '<article class="pcard"><div class="im"><img src="' + p.img + '" alt="' + esc(p.t) + '" loading="lazy"><span class="tg">' + esc(p.tag) + '</span></div><div class="bd"><h4>' + esc(p.t) + '</h4><p>' + esc(p.d) + '</p><button type="button" class="cs">View Case Study</button></div></article>';
+    }).join('') : '<p style="color:var(--muted)">Projects in this category are coming soon.</p>';
+    bindCursor(grid);
+  }
+  renderGrid();
+  tabs.addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b || b.getAttribute('data-cat') === active) return;
+    active = b.getAttribute('data-cat');
+    tabs.querySelectorAll('button').forEach(function(x){ x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+    if (anim) {
+      gsap.to(grid.children, { y: 20, opacity: 0, duration: 0.25, stagger: 0.03, onComplete: function(){
+        renderGrid();
+        gsap.from(grid.children, { y: 40, opacity: 0, duration: 0.6, stagger: 0.07, ease: 'power3.out', onComplete: function(){ ScrollTrigger.refresh(); } });
+      }});
+    } else renderGrid();
+  });
+
+  /* ---------- cursor (shared) ---------- */
+  var cur = document.querySelector('.cur');
+  function bindCursor(scope){
+    if (!anim || !fine) return;
+    scope.querySelectorAll('a, button, .tag').forEach(function(el){
+      if (el._cur) return; el._cur = true;
+      el.addEventListener('mouseenter', function(){ gsap.to(cur, { scale: 3.2, duration: 0.3 }); });
+      el.addEventListener('mouseleave', function(){ gsap.to(cur, { scale: 1, duration: 0.3 }); });
+    });
+  }
+
+  /* ---------- views: home + dedicated service pages (hash routing) ---------- */
+  var homeView = document.getElementById('homeView'), svcView = document.getElementById('svcView');
+  var origTitle = document.title, svcCtx = null, lastHomeY = 0;
+  function findSvc(id){ for (var i = 0; i < SVC_DATA.length; i++) if (SVC_DATA[i].slug === id) return SVC_DATA[i]; return null; }
+  function toTop(){ if (lenis) lenis.scrollTo(0, { immediate: true, force: true }); window.scrollTo(0, 0); }
+  function jumpTo(y){ if (lenis) lenis.scrollTo(y, { immediate: true, force: true }); window.scrollTo(0, y); }
+  function scrollToEl(el){ if (lenis) lenis.scrollTo(el, { offset: el.id === 'home' ? -200 : -10, duration: 1.4, force: true }); else el.scrollIntoView({ behavior: 'smooth' }); }
+  function magBtn(href, label, solid, withArrow){
+    return '<span class="mag"><a href="' + href + '" class="btn' + (solid ? ' solid' : '') + '"><span class="t">' + esc(label) + (withArrow ? ' ' + ARROW : '') + '</span></a></span>';
+  }
+  function renderService(s){
+    var img = 'img/' + s.image.split('/').pop().replace(/\.png$/, '.webp');
+    var hs = ' style="font-size:clamp(40px,5.4vw,88px)"';
+    var h = '';
+    h += '<section class="sv-hero"><div class="bg" style="background-image:url(' + img + ')"></div><div class="wrap">';
+    h += '<a href="#services" class="sv-back">← Back to Services</a><br>';
+    h += '<span class="sv-chip" data-sv>' + icon(s.icon) + esc(s.title) + '</span>';
+    h += '<h1 class="disp" data-svh>' + esc(s.title) + '</h1>';
+    h += '<p class="sv-tag" data-sv>' + esc(s.tagline) + '</p><p class="sv-desc" data-sv>' + esc(s.description) + '</p>';
+    h += '<div class="btns" data-sv>' + magBtn('#contact', 'Start Your Project', true, true) + magBtn('#portfolio', 'View Our Work', false, false) + '</div>';
+    h += '</div></section>';
+
+    h += '<section class="pad"><div class="wrap"><div class="sec-head"><h2 class="disp" data-ssplit' + hs + '>Contact Us</h2><p class="lead" data-sr>Ready to start your project? Let\'s discuss your requirements.</p></div>';
+    h += '<div class="panel sv-form" data-sr><form id="sform" novalidate><div class="row"><div class="f"><label for="sfn">First Name *</label><input id="sfn" required placeholder="John"></div><div class="f"><label for="sln">Last Name *</label><input id="sln" required placeholder="Doe"></div></div>';
+    h += '<div class="f"><label for="sem">Email Address *</label><input id="sem" type="email" required placeholder="john@example.com"></div>';
+    h += '<div class="f"><label for="sph">Phone Number *</label><input id="sph" required placeholder="+91 9876543210"></div>';
+    h += '<div class="f"><label for="ssb">Subject *</label><input id="ssb" required placeholder="Project Discussion"></div>';
+    h += '<div class="f"><label for="smg">Message *</label><textarea id="smg" rows="5" required placeholder="Tell us about your project..."></textarea></div>';
+    h += '<span class="mag"><button type="submit" class="btn solid"><span class="t">Send Message</span></button></span><p class="form-note" id="sformNote" role="status"></p></form></div></div></section>';
+
+    h += '<section class="pad" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 class="disp" data-ssplit' + hs + '>' + esc(s.whyHeading) + '</h2><p class="lead" data-sr>' + esc(s.whyDescription) + '</p></div><div class="why3">';
+    s.whyCards.forEach(function(c){ h += '<article class="wcard" data-sr><span class="icon-tile">' + icon(c.icon) + '</span><span class="lb">' + esc(c.label) + '</span><h3>' + esc(c.title) + '</h3><p>' + esc(c.description) + '</p></article>'; });
+    h += '</div></div></section>';
+
+    h += '<section class="pad" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 class="disp" data-ssplit' + hs + '>' + esc(s.solutionsHeading) + '</h2><p class="lead" data-sr>' + esc(s.solutionsDescription) + '</p></div><div class="ind2">';
+    s.industries.forEach(function(ind){ h += '<article class="icard" data-sr><h3 class="disp">' + esc(ind.title) + '</h3><p>' + esc(ind.description) + '</p><ul>' + ind.features.map(function(f){ return '<li>' + CHECK + '<span>' + esc(f) + '</span></li>'; }).join('') + '</ul></article>'; });
+    h += '</div></div></section>';
+
+    h += '<section class="pad" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 class="disp" data-ssplit' + hs + '>' + esc(s.techHeading) + '</h2><p class="lead" data-sr>' + esc(s.techDescription) + '</p></div><div class="tech4">';
+    s.techCards.forEach(function(c){ h += '<article class="tcard" data-sr><span class="icon-tile">' + icon(c.icon) + '</span><h3>' + esc(c.title) + '</h3><p>' + esc(c.description) + '</p></article>'; });
+    h += '</div></div></section>';
+
+    h += '<section class="pad" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 class="disp" data-ssplit' + hs + '>Our Proven Development Process</h2><p class="lead" data-sr>A systematic approach that ensures quality, transparency, and successful delivery of your ' + esc(s.title.toLowerCase()) + '.</p></div>';
+    h += '<div class="proc"><div class="proc-line" aria-hidden="true"><i></i></div><ol class="steps" style="list-style:none;margin:0;padding:0">';
+    s.process.forEach(function(st, i){ h += '<li class="step"><span class="no">' + String(i + 1).padStart(2, '0') + '</span><h3>' + esc(st.title) + '</h3><p>' + esc(st.description) + '</p><ul>' + st.points.map(function(p){ return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></li>'; });
+    h += '</ol></div>';
+    h += '<div class="box"><div style="flex:999 1 520px"><h3 class="disp">Ready to Build Something Exceptional?</h3><p>Let\'s turn your vision into a scalable, high-impact product. Get in touch with our team today.</p></div>' + magBtn('#contact', "Let's Build Together", true, true) + '</div>';
+    h += '</div></section>';
+
+    svcView.innerHTML = h;
+    document.getElementById('sform').addEventListener('submit', function(e){
+      e.preventDefault(); var note = document.getElementById('sformNote');
+      note.textContent = this.checkValidity() ? 'Preview only: this form is not connected yet, so nothing was sent. Please email connect@acnsaisolutions.com or WhatsApp +91 9667779076.' : 'Please fill in all required fields.';
+    });
+  }
+  function renderProduct(p){
+    var hs = ' style="font-size:clamp(40px,5.4vw,88px)"';
+    var h = '<section class="sv-hero pr-hero"><div class="bg"></div><div class="wrap"><div class="pr-copy">';
+    h += '<a href="#products" class="sv-back">← Back to Products</a><br>';
+    h += '<span class="sv-chip" data-sv>' + icon(p.icon) + esc(p.tag) + '</span>';
+    h += '<h1 class="disp" data-svh>' + esc(p.name) + '</h1>';
+    h += '<p class="sv-tag" data-sv>' + esc(p.tagline) + '</p>';
+    h += '<div class="btns" data-sv><span class="mag"><a href="' + p.url + '" target="_blank" rel="noopener noreferrer" class="btn solid"><span class="t">Open ' + esc(p.name) + ' ' + EXT_ICON + '</span></a></span>' + magBtn('#contact', 'Book a Demo', false, false) + '</div>';
+    h += '</div><div class="pr-mock" data-sv><button type="button" class="pr-shot" data-zoom="' + p.hero + '" aria-label="View ' + esc(p.name) + ' dashboard full size"><span class="bar"><i></i><i></i><i></i><span>' + esc(p.name) + '</span></span><img src="' + p.hero + '" alt="' + esc(p.name) + ' dashboard"></button></div></div></section>';
+
+    h += '<section class="pad"><div class="wrap"><div class="sec-head"><h2 class="disp" data-ssplit' + hs + '>What is ' + esc(p.name) + '?</h2></div><p class="pr-over" data-sr>' + esc(p.overview) + '</p></div></section>';
+
+    h += '<section class="pad" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 class="disp" data-ssplit' + hs + '>The Ecosystem</h2><p class="lead" data-sr>Five connected layers — from raw data to the right action.</p></div>';
+    h += '<div class="eco-flow" data-sr><span class="bus" aria-hidden="true"></span>' + p.stages.map(function(s2, i){ return '<div class="stage"><span class="snode">' + String(i + 1).padStart(2, '0') + '</span><span class="st-sub">' + esc(s2.sub) + '</span><h4>' + esc(s2.t) + '</h4><ul>' + s2.items.map(function(it){ return '<li>' + esc(it) + '</li>'; }).join('') + '</ul></div>'; }).join('') + '</div>';
+    h += '<div class="eco-foot" data-sr><span class="eyebrow">' + esc(p.chipsLabel) + '</span><div class="chips">' + p.chips.map(function(c){ return '<span>' + esc(c) + '</span>'; }).join('') + '</div></div></div></section>';
+
+    h += '<section class="pad" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 class="disp" data-ssplit' + hs + '>Inside ' + esc(p.name) + '</h2><p class="lead" data-sr>Real screens from the live product. Click any screen to see it full size.</p></div><div class="gal">';
+    p.gallery.forEach(function(g){ h += '<figure class="g-item" data-sr><button type="button" data-zoom="' + g[0] + '" aria-label="' + esc(g[1]) + ' — view full size"><img src="' + g[0] + '" alt="' + esc(g[1]) + '" loading="lazy"></button><figcaption>' + esc(g[1]) + '</figcaption></figure>'; });
+    h += '</div></div></section>';
+    h += '<section class="pad" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2 class="disp" data-ssplit' + hs + '>Key Modules</h2><p class="lead" data-sr>Everything ' + esc(p.name) + ' does, module by module.</p></div><div class="why3">';
+    p.modules.forEach(function(m){ h += '<article class="wcard" data-sr><span class="icon-tile">' + icon(m[0]) + '</span><h3 style="margin-top:12px">' + esc(m[1]) + '</h3><p>' + esc(m[2]) + '</p></article>'; });
+    h += '</div></div></section>';
+
+    h += '<section class="pad" style="padding-top:0"><div class="wrap"><div class="pr-two">';
+    h += '<div class="panel" data-sr><h3 class="disp pr-h3">Built for</h3><ul class="pr-list">' + p.audience.map(function(a){ return '<li>' + CHECK + '<span>' + esc(a) + '</span></li>'; }).join('') + '</ul></div>';
+    h += '<div class="panel" data-sr><h3 class="disp pr-h3">Deployment</h3><div class="pr-dep">' + p.deploy.map(function(d){ return '<div><b>' + esc(d[0]) + '</b><p>' + esc(d[1]) + '</p></div>'; }).join('') + '</div></div>';
+    h += '</div>';
+    h += '<div class="box"><div style="flex:999 1 520px"><h3 class="disp">See ' + esc(p.name) + ' <span class="hl">live</span></h3><p>Log in with your demo credentials, or book a guided walkthrough with our team.</p><p class="pr-url">' + esc(p.url) + '</p></div><div class="btns"><span class="mag"><a href="' + p.url + '" target="_blank" rel="noopener noreferrer" class="btn solid"><span class="t">Open ' + esc(p.name) + ' ' + EXT_ICON + '</span></a></span>' + magBtn('#contact', 'Book a Demo', false, false) + '</div></div>';
+    h += '</div></section>';
+    svcView.innerHTML = h;
+    svcView.querySelectorAll('.g-item img').forEach(function(im){ var f = function(){ if (im.naturalWidth / im.naturalHeight > 1.4) im.classList.add('wide'); }; if (im.complete && im.naturalWidth) f(); else im.addEventListener('load', f); });
+    initHeat(svcView);
+    setTimeout(function(){ var hero = svcView.querySelector('.pr-hero'); if (hero) hero.classList.add('anim-in'); }, 500);
+  }
+  function route(){
+    var id = decodeURIComponent(location.hash.slice(1)); var s = findSvc(id), pr = s ? null : findProd(id);
+    clearHeat();
+    var hv = document.querySelector('.hov');
+    if (hv) { if (hasG) { gsap.killTweensOf(hv, 'scale,opacity,rotate'); gsap.set(hv, { scale: 0, opacity: 0, rotate: 0 }); } else { hv.style.opacity = 0; } }
+    if (svcCtx) { svcCtx.revert(); svcCtx = null; }
+    if (s || pr) {
+      if (!homeView.hidden) lastHomeY = window.scrollY;
+      if (s) renderService(s); else renderProduct(pr);
+      homeView.hidden = true; svcView.hidden = false;
+      document.title = (s ? s.title : pr.name) + ' | ACNS AI SOLUTIONS LLP';
+      toTop();
+      if (anim) { animateService(); bindCursor(svcView); bindMag(svcView); }
+      if (hasG) requestAnimationFrame(function(){ ScrollTrigger.refresh(); });
+    } else {
+      var fromSvc = homeView.hidden;
+      svcView.hidden = true; svcView.innerHTML = ''; homeView.hidden = false; document.title = origTitle;
+      if (hasG) ScrollTrigger.refresh();
+      if (fromSvc) jumpTo(lastHomeY);
+      var el = id ? document.getElementById(id) : null;
+      if (el) setTimeout(function(){ scrollToEl(el); }, 60);
+    }
+  }
+  window.addEventListener('hashchange', route);
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null; if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    if (findSvc(id) || findProd(id)) return; /* let the hash change open the service / product page */
+    var el = id ? document.getElementById(id) : null; if (!el) return;
+    e.preventDefault();
+    if (homeView.hidden && homeView.contains(el)) { location.hash = id; return; }
+    scrollToEl(el);
+  });
+
+  if (!anim) { pre.style.display = 'none'; startPhysicsWhenVisible(); route(); return; }
+  gsap.registerPlugin(ScrollTrigger);
+  setTimeout(function(){ if (pre.style.display !== 'none') { pre.style.display = 'none'; if (lenis) lenis.start(); } }, 6000);
+
+  /* ---------- smooth scroll ---------- */
+  if (typeof window.Lenis !== 'undefined') {
+    lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(t){ lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+    lenis.stop();
+  }
+
+  /* ---------- split helpers ---------- */
+  function splitInto(el, mode){
+    var out = [];
+    (function walk(node, wrapCls){
+      Array.prototype.slice.call(node.childNodes).forEach(function(n){
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function(part){
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+            var inner = document.createElement('span'); inner.textContent = part;
+            if (mode === 'mask') { inner.className = 'wi'; var o = document.createElement('span'); o.className = 'w'; o.appendChild(inner); frag.appendChild(o); }
+            else { inner.className = 'sw'; frag.appendChild(inner); }
+            out.push(inner);
+          });
+          node.replaceChild(frag, n);
+        } else if (n.nodeType === 1) walk(n);
+      });
+    })(el);
+    return out;
+  }
+
+  /* ---------- intro ---------- */
+  var num = document.getElementById('preNum'); var c = { v: 0 };
+  gsap.set('.hero .wi', { yPercent: 115 });
+  gsap.set('.hero [data-fade]', { y: 30, opacity: 0 });
+  gsap.set('#orbit', { scale: 0.55, opacity: 0, rotate: -40 });
+  gsap.timeline({ onComplete: function(){ pre.style.display = 'none'; if (lenis) lenis.start(); } })
+    .to(c, { v: 100, duration: 1.4, ease: 'power2.inOut', onUpdate: function(){ num.textContent = Math.round(c.v); } })
+    .to(pre, { yPercent: -100, duration: 0.95, ease: 'power4.inOut' })
+    .to('.hero .wi', { yPercent: 0, duration: 1.1, stagger: 0.09, ease: 'power4.out' }, '-=0.45')
+    .to('.hero [data-fade]', { y: 0, opacity: 1, duration: 0.8, stagger: 0.09, ease: 'power3.out' }, '-=0.75')
+    .to('#orbit', { scale: 1, opacity: 1, rotate: 0, duration: 1.6, ease: 'power3.out' }, '-=1.3');
+
+  gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
+  /* hero: scroll-out parallax, spotlight + orbit tilt */
+  var heroEl = document.querySelector('.hero');
+  gsap.to('.hero-copy', { yPercent: -14, opacity: 0.25, ease: 'none', scrollTrigger: { trigger: heroEl, start: 'top top', end: 'bottom top', scrub: true } });
+  gsap.to('.orbit-wrap', { yPercent: 10, rotate: 25, ease: 'none', scrollTrigger: { trigger: heroEl, start: 'top top', end: 'bottom top', scrub: true } });
+  if (fine) {
+    var spot = heroEl.querySelector('.spot');
+    var sx = gsap.quickTo(spot, 'x', { duration: 0.6, ease: 'power3' }), sy = gsap.quickTo(spot, 'y', { duration: 0.6, ease: 'power3' });
+    var orb = document.getElementById('orbit');
+    var ox = gsap.quickTo(orb, 'rotationY', { duration: 0.8, ease: 'power3' }), oy = gsap.quickTo(orb, 'rotationX', { duration: 0.8, ease: 'power3' });
+    heroEl.addEventListener('mousemove', function(e){
+      var r = heroEl.getBoundingClientRect(); sx(e.clientX - r.left); sy(e.clientY - r.top); heroEl.classList.add('lit');
+      ox((e.clientX / window.innerWidth - 0.5) * 22); oy(-(e.clientY / window.innerHeight - 0.5) * 22);
+    });
+    heroEl.addEventListener('mouseleave', function(){ heroEl.classList.remove('lit'); ox(0); oy(0); });
+  }
+
+  /* headings */
+  document.querySelectorAll('[data-split]').forEach(function(h){
+    var ws = splitInto(h, 'mask');
+    gsap.from(ws, { yPercent: 115, duration: 1, stagger: 0.07, ease: 'power4.out', scrollTrigger: { trigger: h, start: 'top 86%' } });
+  });
+  /* quotes: text invert */
+  document.querySelectorAll('[data-invert]').forEach(function(q){
+    var ws = splitInto(q, 'plain');
+    gsap.fromTo(ws, { opacity: 0.14 }, { opacity: 1, stagger: 0.05, ease: 'none', scrollTrigger: { trigger: q, start: 'top 80%', end: 'bottom 50%', scrub: true } });
+  });
+  /* photo parallax */
+  document.querySelectorAll('[data-parallax]').forEach(function(img){
+    gsap.fromTo(img, { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: img.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+
+  /* reveals */
+  gsap.set('[data-reveal]', { y: 40, opacity: 0 });
+  ScrollTrigger.batch('[data-reveal]', { start: 'top 90%', once: true, onEnter: function(els){ gsap.to(els, { y: 0, opacity: 1, duration: 0.9, stagger: 0.1, ease: 'power3.out' }); } });
+  gsap.from('.svc a', { y: 40, opacity: 0, duration: 0.8, stagger: 0.06, ease: 'power3.out', scrollTrigger: { trigger: '.svc', start: 'top 85%' } });
+  gsap.from('.faq', { y: 30, opacity: 0, duration: 0.7, stagger: 0.06, ease: 'power3.out', scrollTrigger: { trigger: '.faqs', start: 'top 85%' } });
+  ScrollTrigger.create({ trigger: grid, start: 'top 88%', once: true, onEnter: function(){ gsap.from(grid.children, { y: 50, opacity: 0, duration: 0.8, stagger: 0.08, ease: 'power3.out' }); } });
+
+  /* marquee */
+  var mq = gsap.to('#mq', { xPercent: -50, duration: 40, ease: 'none', repeat: -1 });
+  mq.totalTime(mq.duration() * 50);
+  ScrollTrigger.create({ start: 0, end: 'max', onUpdate: function(self){
+    var v = Math.min(Math.abs(self.getVelocity()) / 400, 4);
+    gsap.to(mq, { timeScale: self.direction * (1 + v), duration: 0.3, overwrite: true });
+    gsap.to(mq, { timeScale: self.direction, duration: 1.2, delay: 0.3 });
+  }});
+
+  /* counters */
+  document.querySelectorAll('[data-count]').forEach(function(el){
+    var target = +el.getAttribute('data-count'); var o = { v: 0 }; el.textContent = '0';
+    ScrollTrigger.create({ trigger: el, start: 'top 92%', once: true, onEnter: function(){ gsap.to(o, { v: target, duration: 1.8, ease: 'power3.out', onUpdate: function(){ el.textContent = Math.round(o.v); } }); } });
+  });
+
+  /* why-us stacked cards */
+  var cards = gsap.utils.toArray('.card');
+  cards.forEach(function(card, i){
+    card.style.top = (100 + i * 22) + 'px';
+    gsap.from(card.querySelector('.ln'), { scaleX: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: card, start: 'top 70%' } });
+    if (i === cards.length - 1) return;
+    gsap.to(card, { scale: 0.9 + i * 0.025, opacity: 0.5, ease: 'none', scrollTrigger: { trigger: cards[i + 1], start: 'top bottom', end: 'top ' + (100 + (i + 1) * 22) + 'px', scrub: true } });
+  });
+
+  /* hover image preview: ONLY over Services rows and Portfolio cards.
+     Checked on every mouse move AND every scroll, so it never sticks when the page scrolls under a still cursor. */
+  if (fine) {
+    var hov = document.querySelector('.hov'), hovImg = document.getElementById('hovImg');
+    var hx = gsap.quickTo(hov, 'x', { duration: 0.5, ease: 'power3' }), hy = gsap.quickTo(hov, 'y', { duration: 0.5, ease: 'power3' });
+    var mx = -1, my = -1, hovOn = false;
+    function hovTarget(){
+      if (mx < 0 || !homeView || homeView.hidden) return null;
+      var el = document.elementFromPoint(mx, my);
+      return el && el.closest ? el.closest('#svcList a[data-img], #grid .pcard') : null;
+    }
+    function hovCheck(){
+      var t = hovTarget();
+      if (t) {
+        var pim = t.querySelector('.im img'); var src = t.getAttribute('data-img') || (pim && pim.getAttribute('src'));
+        if (src && hovImg.getAttribute('src') !== src) hovImg.setAttribute('src', src);
+        if (!hovOn) { hovOn = true; gsap.to(hov, { scale: 1, opacity: 1, rotate: -4, duration: 0.45, ease: 'back.out(1.6)', overwrite: 'auto' }); }
+      } else if (hovOn) { hovOn = false; gsap.to(hov, { scale: 0, opacity: 0, rotate: 0, duration: 0.3, ease: 'power3.in', overwrite: 'auto' }); }
+    }
+    window.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; hx(mx + 28); hy(my - 115); hovCheck(); }, { passive: true });
+    window.addEventListener('scroll', hovCheck, { passive: true });
+    document.addEventListener('mouseleave', function(){ mx = -1; hovCheck(); });
+    window.addEventListener('hashchange', function(){ hovOn = false; });
+  }
+
+  /* cursor + magnetic */
+  if (fine) {
+    var cx = gsap.quickTo(cur, 'x', { duration: 0.18, ease: 'power3' }), cy = gsap.quickTo(cur, 'y', { duration: 0.18, ease: 'power3' });
+    window.addEventListener('mousemove', function(e){ cx(e.clientX); cy(e.clientY); gsap.to(cur, { opacity: 1, duration: 0.3 }); });
+    bindCursor(document);
+    bindMag(document);
+  }
+
+  function bindMag(scope){
+    if (!anim || !fine) return;
+    scope.querySelectorAll('.mag').forEach(function(m){
+      if (m._mag) return; m._mag = true;
+      var inner = m.firstElementChild; var txt = inner.querySelector('.t');
+      m.addEventListener('mousemove', function(e){
+        var r = m.getBoundingClientRect(); var dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+        gsap.to(inner, { x: dx * 0.3, y: dy * 0.35, duration: 0.5, ease: 'power3.out' });
+        if (txt) gsap.to(txt, { x: dx * 0.12, y: dy * 0.12, duration: 0.5, ease: 'power3.out' });
+      });
+      m.addEventListener('mouseleave', function(){
+        gsap.to(inner, { x: 0, y: 0, duration: 0.9, ease: 'elastic.out(1, 0.35)' });
+        if (txt) gsap.to(txt, { x: 0, y: 0, duration: 0.9, ease: 'elastic.out(1, 0.35)' });
+      });
+    });
+  }
+
+  /* ---------- service page animations ---------- */
+  function animateService(){
+    svcCtx = gsap.context(function(){
+      var hero = svcView.querySelector('.sv-hero'), bg = hero.querySelector('.bg'), proc = svcView.querySelector('.proc');
+      var hw = splitInto(svcView.querySelector('[data-svh]'), 'mask');
+      gsap.from(hw, { yPercent: 115, duration: 1.1, stagger: 0.08, ease: 'power4.out', delay: 0.1 });
+      gsap.from(svcView.querySelectorAll('.sv-back, [data-sv]'), { y: 30, opacity: 0, duration: 0.8, stagger: 0.08, ease: 'power3.out', delay: 0.3 });
+      if (bg && !hero.classList.contains('pr-hero')) gsap.fromTo(bg, { scale: 1.18 }, { scale: 1, duration: 1.8, ease: 'power3.out' });
+      if (bg) gsap.to(bg, { yPercent: 14, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+      svcView.querySelectorAll('[data-ssplit]').forEach(function(h){
+        var w = splitInto(h, 'mask');
+        gsap.from(w, { yPercent: 115, duration: 1, stagger: 0.06, ease: 'power4.out', scrollTrigger: { trigger: h, start: 'top 86%' } });
+      });
+      var rs = svcView.querySelectorAll('[data-sr]');
+      gsap.set(rs, { y: 40, opacity: 0 });
+      ScrollTrigger.batch(rs, { start: 'top 90%', once: true, onEnter: function(els){ gsap.to(els, { y: 0, opacity: 1, duration: 0.9, stagger: 0.1, ease: 'power3.out' }); } });
+      if (proc) gsap.to(proc.querySelector('.proc-line i'), { scaleX: 1, ease: 'none', scrollTrigger: { trigger: proc, start: 'top 75%', end: 'top 25%', scrub: true } });
+      if (proc) gsap.from(proc.querySelectorAll('.step'), { y: 50, opacity: 0, duration: 0.8, stagger: 0.14, ease: 'power3.out', scrollTrigger: { trigger: proc, start: 'top 80%' } });
+      if (proc) gsap.from(proc.querySelectorAll('.step .no'), { scale: 0, duration: 0.7, stagger: 0.14, ease: 'back.out(2)', scrollTrigger: { trigger: proc, start: 'top 80%' } });
+    }, svcView);
+  }
+
+  startPhysicsWhenVisible();
+  route();
+
+  /* ---------- physics ---------- */
+  function startPhysicsWhenVisible(){
+    if (typeof window.Matter === 'undefined' || !('IntersectionObserver' in window)) return;
+    var box = document.getElementById('phys');
+    var io = new IntersectionObserver(function(en){ if (en[0].isIntersecting && !physStarted) { io.disconnect(); initPhysics(); } }, { threshold: 0.35 });
+    io.observe(box);
+  }
+  function initPhysics(){
+    var M = window.Matter, box = document.getElementById('phys');
+    physStarted = true; box.classList.remove('static');
+    var W = box.clientWidth, H = box.clientHeight, T = 100;
+    engine = M.Engine.create(); engine.gravity.y = 1.1;
+    var walls = [
+      M.Bodies.rectangle(W / 2, H + T / 2, W + 400, T, { isStatic: true }),
+      M.Bodies.rectangle(-T / 2, H / 2 - 400, T, H * 3, { isStatic: true }),
+      M.Bodies.rectangle(W + T / 2, H / 2 - 400, T, H * 3, { isStatic: true })
+    ];
+    var items = Array.prototype.map.call(box.querySelectorAll('.tag'), function(el, i){
+      var w = el.offsetWidth, h = el.offsetHeight;
+      var b = M.Bodies.rectangle(w / 2 + Math.random() * Math.max(10, W - w), -h - i * 55, w, h, { chamfer: { radius: h / 2 }, restitution: 0.45, friction: 0.25, frictionAir: 0.012, angle: (Math.random() - 0.5) * 0.8 });
+      return { el: el, b: b, w: w, h: h };
+    });
+    M.Composite.add(engine.world, walls.concat(items.map(function(x){ return x.b; })));
+    if (fine) {
+      var mouse = M.Mouse.create(box);
+      ['mousewheel', 'DOMMouseScroll', 'wheel'].forEach(function(ev){ mouse.element.removeEventListener(ev, mouse.mousewheel); });
+      M.Composite.add(engine.world, M.MouseConstraint.create(engine, { mouse: mouse, constraint: { stiffness: 0.18, render: { visible: false } } }));
+    } else if (!box._tapBound) {
+      box._tapBound = true;
+      box.addEventListener('click', function(){ if (!engine) return; engine.world.bodies.forEach(function(b){ if (!b.isStatic) M.Body.applyForce(b, b.position, { x: (Math.random() - 0.5) * 0.06 * b.mass, y: -0.1 * b.mass }); }); });
+    }
+    runner = M.Runner.create(); M.Runner.run(runner, engine);
+    (function loop(){
+      items.forEach(function(x){ x.el.style.transform = 'translate(' + (x.b.position.x - x.w / 2) + 'px,' + (x.b.position.y - x.h / 2) + 'px) rotate(' + x.b.angle + 'rad)'; });
+      rafId = requestAnimationFrame(loop);
+    })();
+  }
+  function destroyPhysics(){
+    var M = window.Matter; if (!M || !engine) return;
+    cancelAnimationFrame(rafId); M.Runner.stop(runner); M.Composite.clear(engine.world, false); M.Engine.clear(engine); engine = null;
+    var box = document.getElementById('phys'); box.classList.add('static');
+    box.querySelectorAll('.tag').forEach(function(t){ t.style.transform = ''; });
+  }
+})();
+</script>
+</body>
+</html>
